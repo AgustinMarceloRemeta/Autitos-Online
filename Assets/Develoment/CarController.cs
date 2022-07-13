@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using Fusion;
 
 public class CarController : MonoBehaviour
 {
@@ -11,7 +11,6 @@ public class CarController : MonoBehaviour
     [SerializeField] WheelCollider WheelBl, WheelBr, WheelFr, WheelFl;
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
     [SerializeField] float Force, Velocity,VelocityMax, ActualVelocity, AnguledDirection, Turn;
-    public bool VelocityPower;
 
     
     private void Start()
@@ -35,22 +34,12 @@ public class CarController : MonoBehaviour
     {
         ActualVelocity = 2 * Mathf.PI * WheelFl.radius * WheelFl.rpm * 60 / 1000;
       if(Velocity<VelocityMax)
-        {
-            if (VelocityPower)
-            {
-                WheelFl.motorTorque = Force * Input.GetAxis("Vertical")*2;
-                WheelFr.motorTorque = Force * Input.GetAxis("Vertical") *2;
-                WheelBl.motorTorque = Force * Input.GetAxis("Vertical") *2;
-                WheelBl.motorTorque = Force * Input.GetAxis("Vertical") *2;
-            }
-            else
             {
                 WheelFl.motorTorque = Force * Input.GetAxis("Vertical");
                 WheelFr.motorTorque = Force * Input.GetAxis("Vertical");
                 WheelBl.motorTorque = Force * Input.GetAxis("Vertical");
                 WheelBl.motorTorque = Force * Input.GetAxis("Vertical");
             }
-        }
         else
         {
             WheelFl.motorTorque = 0;

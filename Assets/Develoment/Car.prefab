@@ -237,7 +237,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2268414199520624963}
   - component: {fileID: 1797428623609456314}
-  - component: {fileID: 1797428623609456315}
   - component: {fileID: 5962351266483931017}
   - component: {fileID: 8878986291818987137}
   - component: {fileID: 5457375800738436399}
@@ -280,32 +279,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1797428623609456315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454898107187813369}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92d45664d879eb47a54f185b870a972, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WheelBl: {fileID: 0}
-  WheelBr: {fileID: 0}
-  WheelFr: {fileID: 0}
-  WheelFl: {fileID: 0}
-  TrWheelBl: {fileID: 0}
-  TrWheelBr: {fileID: 0}
-  TrWheelFr: {fileID: 0}
-  TrWheelFl: {fileID: 0}
-  Force: 0
-  Velocity: 0
-  VelocityMax: 0
-  ActualVelocity: 0
-  AnguledDirection: 0
-  Turn: 0
 --- !u!65 &5962351266483931017
 BoxCollider:
   m_ObjectHideFlags: 0

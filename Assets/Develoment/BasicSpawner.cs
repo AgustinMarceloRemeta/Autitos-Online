@@ -29,7 +29,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnInput(NetworkRunner runner, NetworkInput input) {
         var data = new NetworkInputData();
         // CAMBIAR AL MOVIMIENTO DEL AUTO
-
+        /*
         if (Input.GetKey(KeyCode.W))
         {
             data.direction += Vector3.forward;
@@ -43,7 +43,9 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
         if (Input.GetKey(KeyCode.D))
             data.direction += Vector3.right;
-
+       */
+        data.Force = Input.GetAxis("Vertical");
+        data.turn = Input.GetAxis("Horizontal");
         input.Set(data);
     }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }

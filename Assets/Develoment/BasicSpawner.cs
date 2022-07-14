@@ -31,7 +31,9 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         // CAMBIAR AL MOVIMIENTO DEL AUTO
 
         if (Input.GetKey(KeyCode.W))
+        {
             data.direction += Vector3.forward;
+        }
 
         if (Input.GetKey(KeyCode.S))
             data.direction += Vector3.back;

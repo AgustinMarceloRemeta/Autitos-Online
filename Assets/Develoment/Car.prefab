@@ -344,7 +344,7 @@ MonoBehaviour:
   Velocity: 0
   VelocityMax: 150
   ActualVelocity: 0
-  AnguledDirection: 45
+  AnguledDirection: 40
   Turn: 0
 --- !u!114 &5457375800738436399
 MonoBehaviour:

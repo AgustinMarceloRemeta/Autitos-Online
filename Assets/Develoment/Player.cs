@@ -14,7 +14,17 @@ public class Player : NetworkBehaviour
     {
         Rb = GetComponent<Rigidbody>();
     }
+    private void Start()
+    {
+        if (Object.HasInputAuthority) this.gameObject.name = "PlayerLocal"; 
+    }
     public override void FixedUpdateNetwork()
+    {
+        Movement();
+        VisualWhels();
+    }
+
+    private void Movement()
     {
         if (GetInput(out NetworkInputData data))
         {
@@ -22,6 +32,7 @@ public class Player : NetworkBehaviour
             data.direction.Normalize();
             transform.Translate(data.direction * Runner.DeltaTime);
             */
+            ActualVelocity = 2 * Mathf.PI * WheelFl.radius * WheelFl.rpm * 60 / 1000;
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
             Velocity = Rb.velocity.magnitude * 15;
             if (Velocity < VelocityMax)
@@ -43,8 +54,19 @@ public class Player : NetworkBehaviour
             WheelFl.steerAngle = Turn;
             WheelFr.steerAngle = Turn;
 
-
         }
     }
 
+    private void VisualWhels()
+    {
+        Vector3 DirectionWheel = TrWheelFl.localEulerAngles;
+        DirectionWheel.y = Turn;
+        TrWheelFl.localEulerAngles = DirectionWheel;
+        TrWheelFr.localEulerAngles = DirectionWheel;
+
+        TrWheelBl.Rotate(ActualVelocity, 0, 0);
+        TrWheelFl.Rotate(ActualVelocity, 0, 0);
+        TrWheelBr.Rotate(ActualVelocity, 0, 0);
+        TrWheelFr.Rotate(ActualVelocity, 0, 0);
+    }
 }

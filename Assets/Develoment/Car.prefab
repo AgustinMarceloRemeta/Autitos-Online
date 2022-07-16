@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 5962351266483931017}
   - component: {fileID: 8878986291818987137}
   - component: {fileID: 5457375800738436399}
-  - component: {fileID: 1538132849393097738}
+  - component: {fileID: 5099995744435428587}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -319,6 +319,8 @@ MonoBehaviour:
   ActualVelocity: 0
   AnguledDirection: 40
   Turn: 0
+  ThisCamera: {fileID: 1797428623055827826}
+  MainCamera: {fileID: 0}
 --- !u!114 &5457375800738436399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,9 +344,9 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 8878986291818987137}
-  - {fileID: 1538132849393097738}
+  - {fileID: 5099995744435428587}
   SimulationBehaviours: []
---- !u!114 &1538132849393097738
+--- !u!114 &5099995744435428587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -356,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 1710889294, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
+  _interpolationDataSource: 1
   InterpolationSpace: 0
   InterpolationTarget: {fileID: 4038848855674623989}
   InterpolateErrorCorrection: 1
@@ -479,11 +481,11 @@ GameObject:
   - component: {fileID: 1797428623055827825}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1797428623055827831
 Transform:
   m_ObjectHideFlags: 0

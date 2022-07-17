@@ -16,7 +16,11 @@ public class Player : NetworkBehaviour
     }
     private void Start()
     {
-        if (Object.HasInputAuthority) this.gameObject.name = "PlayerLocal"; 
+        if (Object.HasInputAuthority)
+        {
+            this.gameObject.name = "PlayerLocal";
+            ControlCamera.FollowEvent?.Invoke();
+        } 
     }
     public override void FixedUpdateNetwork()
     {

@@ -6,9 +6,11 @@ using Fusion;
 using Fusion.Sockets;
 using UnityEngine.SceneManagement;
 
+
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     private NetworkRunner _runner;
+    [SerializeField] GameObject Panel;
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
@@ -79,18 +81,21 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     }
 
     // Modificar estos botones
-    private void OnGUI()
+    public void Buttons(string Mode)
     {
         if (_runner == null)
         {
-            if (GUI.Button(new Rect(0, 0, 200, 40), "Host"))
+            //if (GUI.Button(new Rect(500, 0, 200, 40), "Host"))
+            if(Mode == "Host")
             {
                StartGame(GameMode.Host);
             }
-            if (GUI.Button(new Rect(0, 40, 200, 40), "Join"))
+            // if (GUI.Button(new Rect(500, 40, 200, 40), "Join"))
+            if (Mode == "Client")
             {
                StartGame(GameMode.Client) ;
             }
+            Panel.SetActive(false);
         }
     }
 }

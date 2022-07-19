@@ -7,11 +7,14 @@ using Fusion.Sockets;
 using UnityEngine.SceneManagement;
 
 
+
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
+    [SerializeField] GameObject Button;
     private NetworkRunner _runner;
     [SerializeField] GameObject Panel;
     [SerializeField] private NetworkPrefabRef _playerPrefab;
+    Player[] players;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     { // Create a unique position for the player
@@ -76,7 +79,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             GameMode = mode,
             SessionName = "TestRoom",
             Scene = SceneManager.GetActiveScene().buildIndex,
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+            PlayerCount = 7 //maximo de players            
         });
     }
 
@@ -89,6 +93,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             if(Mode == "Host")
             {
                StartGame(GameMode.Host);
+                Button.SetActive(true);
             }
             // if (GUI.Button(new Rect(500, 40, 200, 40), "Join"))
             if (Mode == "Client")
@@ -98,5 +103,11 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Panel.SetActive(false);
         }
     }
+    public void InitGame()
+    {
+        players = FindObjectsOfType<Player>();
+        FindObjectOfType<GameManager>().Race(players);   
+    }
+
 }
 

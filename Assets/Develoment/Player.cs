@@ -10,6 +10,7 @@ public class Player : NetworkBehaviour
     [SerializeField] WheelCollider WheelBl, WheelBr, WheelFr, WheelFl;
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
     [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn;
+
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();

@@ -109,13 +109,9 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Panel.SetActive(false);
         }
     }
-    [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.All)]
-    public void RPC_InitGame()
+  void SoyUnBoton()
     {
-        players = FindObjectsOfType<Player>();
-        StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));
-        print("Hola jere");
-        
+        FindObjectOfType<Player>().RPC_InitGame();
     }
     private void Update()
     {

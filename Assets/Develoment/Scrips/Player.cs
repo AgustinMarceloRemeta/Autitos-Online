@@ -32,14 +32,16 @@ public class Player : NetworkBehaviour
     {
         FindObjectOfType<GameManager>().Race(this.GetComponent<Player>(),player);
     }
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_InitGame()
-    {
-        //  players = FindObjectsOfType<Player>();
-        //    StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));
-        print("Hola jere");
 
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_InitGame(Player[] players)
+    {
+            StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));
+            
     }
+
+
     public void Update()
     {
      //   if(Laps == manager.Laps) 

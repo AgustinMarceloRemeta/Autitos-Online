@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class GameManager : MonoBehaviour
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < player.Length; i++)
         player[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         this.GetComponent<MeshRenderer>().material = NewMaterial;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
  
 }

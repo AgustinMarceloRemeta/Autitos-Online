@@ -109,9 +109,10 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Panel.SetActive(false);
         }
     }
-  void SoyUnBoton()
+  public void SoyUnBoton()
     {
-        FindObjectOfType<Player>().RPC_InitGame();
+        players = FindObjectsOfType<Player>();
+        FindObjectOfType<Player>().RPC_InitGame(players);
     }
     private void Update()
     {

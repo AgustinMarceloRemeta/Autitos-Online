@@ -38,7 +38,9 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < player.Length; i++)
         player[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         this.GetComponent<MeshRenderer>().material = NewMaterial;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+     
+     //   Destroy(FindObjectOfType<BasicSpawner>().gameObject);
+     //   SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
  
 }

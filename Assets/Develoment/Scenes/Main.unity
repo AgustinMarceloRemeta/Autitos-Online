@@ -7344,14 +7344,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1641496985}
         m_TargetAssemblyTypeName: BasicSpawner, Assembly-CSharp
-        m_MethodName: RunRpc
+        m_MethodName: SoyUnBoton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: HolaSoyJere
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1089998432

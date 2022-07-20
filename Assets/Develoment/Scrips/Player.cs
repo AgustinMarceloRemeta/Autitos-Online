@@ -37,8 +37,7 @@ public class Player : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_InitGame(Player[] players)
     {
-            StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));
-            
+            StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));  
     }
 
 

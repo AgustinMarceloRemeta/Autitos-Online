@@ -26,7 +26,7 @@ public class ControlCamera : MonoBehaviour
         {
             this.gameObject.transform.LookAt(Player.transform);
             float Vel = Time.deltaTime * SpeedAnim;
-            if (InitY > CameraY) InitY -= Vel;
+            //if (InitY > CameraY) InitY -= Vel;
             this.transform.position = new Vector3(this.transform.position.x,InitY, this.transform.position.z);
         }
     }

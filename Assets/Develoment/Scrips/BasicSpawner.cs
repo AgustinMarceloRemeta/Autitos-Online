@@ -102,9 +102,9 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
                 Button.SetActive(true);
             }
             // if (GUI.Button(new Rect(500, 40, 200, 40), "Join"))
-            if (Mode == "Client")
+            if (Mode == "AutoHostOrClient")
             {
-               StartGame(GameMode.Client) ;
+               StartGame(GameMode.AutoHostOrClient) ;
             }
             Panel.SetActive(false);
         }

@@ -3,20 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Vector3[] Positions;
     [SerializeField] Material NewMaterial;
+    public int LapsForWin;
+    [SerializeField] Text TextWin;
     void Start()
     {
-       
+        TextWin.text = "Ganadores:" + "\n";
     }
 
 
     void Update()
     {
        
+    }
+
+    public void ListText(string Name)
+    {
+   TextWin.text += Name + "\n";
     }
 
     public void Race(Player player, int id) 

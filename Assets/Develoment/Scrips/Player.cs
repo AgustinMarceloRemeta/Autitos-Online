@@ -11,8 +11,9 @@ public class Player : NetworkBehaviour
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
     [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn;
     [SerializeField] int PointControl, Laps;
-    public bool End;
+    [SerializeField] GameObject NewCamera;
     GameManager manager;
+    public string Name;
 
     private void Awake()
     {
@@ -27,23 +28,35 @@ public class Player : NetworkBehaviour
             ControlCamera.FollowEvent?.Invoke();
         }
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
+        Name = FindObjectOfType<BasicSpawner>().Name;
+        if (Name == "") Name = "Jugador sin nombre";
     }
     void Init(int player)
     {
         FindObjectOfType<GameManager>().Race(this.GetComponent<Player>(),player);
     }
 
+    void Win()
+    {
+        if (Laps == manager.LapsForWin)
+        {
+            manager.ListText(Name);
+            GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
+            Runner.Despawn(GetComponent<NetworkObject>());
+        }
+    }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_InitGame(Player[] players)
     {
             StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));  
     }
-
+    
 
     public void Update()
     {
-     //   if(Laps == manager.Laps) 
+        //   if(Laps == manager.Laps) 
+        Win();
     }
     public override void FixedUpdateNetwork()
     {

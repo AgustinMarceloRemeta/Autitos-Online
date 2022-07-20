@@ -19,6 +19,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] Text NameText;
     public string Name;
     public int IdPlayer;
+    [SerializeField] int MaxPlayersRoom;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     { // Create a unique position for the player
@@ -27,6 +28,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         // Keep track of the player avatars so we can remove it when they disconnect
         _spawnedCharacters.Add(player, networkPlayerObject);
         IdPlayer = player.PlayerId;
+        if(IdPlayer == MaxPlayersRoom-1) Button.SetActive(true);
     }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {  // Find and remove the players avatar
@@ -38,22 +40,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     }
     public void OnInput(NetworkRunner runner, NetworkInput input) {
         var data = new NetworkInputData();
-        // CAMBIAR AL MOVIMIENTO DEL AUTO
-        /*
-        if (Input.GetKey(KeyCode.W))
-        {
-            data.direction += Vector3.forward;
-        }
-
-        if (Input.GetKey(KeyCode.S))
-            data.direction += Vector3.back;
-
-        if (Input.GetKey(KeyCode.A))
-            data.direction += Vector3.left;
-
-        if (Input.GetKey(KeyCode.D))
-            data.direction += Vector3.right;
-       */
         data.Force = Input.GetAxis("Vertical");
         data.turn = Input.GetAxis("Horizontal");
         input.Set(data);
@@ -73,7 +59,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnSceneLoadStart(NetworkRunner runner) { }
 
     public async void StartGame(GameMode mode)
-    {
+    {      
         // Create the Fusion runner and let it know that we will be providing user input
         _runner = gameObject.AddComponent<NetworkRunner>();
         _runner.ProvideInput = true;
@@ -85,7 +71,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             //SessionName = "TestRoom",
             Scene = SceneManager.GetActiveScene().buildIndex,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
-            PlayerCount = 7 //maximo de players,
+            PlayerCount = MaxPlayersRoom //maximo de players,
            
         });
     }
@@ -99,7 +85,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             if(Mode == "Host")
             {
                StartGame(GameMode.Host);
-                Button.SetActive(true);
             }
             // if (GUI.Button(new Rect(500, 40, 200, 40), "Join"))
             if (Mode == "AutoHostOrClient")
@@ -109,10 +94,11 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Panel.SetActive(false);
         }
     }
-  public void SoyUnBoton()
+  public void InitRace()
     {
         players = FindObjectsOfType<Player>();
         FindObjectOfType<Player>().RPC_InitGame(players);
+        Button.SetActive(false);
     }
     private void Update()
     {

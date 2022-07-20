@@ -327,12 +327,15 @@ MonoBehaviour:
   TrWheelBr: {fileID: 1797428623620694076}
   TrWheelFr: {fileID: 1797428624008820878}
   TrWheelFl: {fileID: 1797428623776171475}
-  Force: 9999
+  Force: 99999
   Velocity: 0
   VelocityMax: 150
   ActualVelocity: 0
   AnguledDirection: 40
   Turn: 0
+  PointControl: 0
+  Laps: 0
+  End: 0
 --- !u!114 &5457375800738436399
 MonoBehaviour:
   m_ObjectHideFlags: 0

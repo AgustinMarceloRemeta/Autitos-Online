@@ -11,6 +11,7 @@ public class Player : NetworkBehaviour
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
     [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn;
     [SerializeField] int PointControl, Laps;
+    public bool End;
 
     private void Awake()
     {
@@ -66,15 +67,16 @@ public class Player : NetworkBehaviour
 
     private void VisualWhels()
     {
-        Vector3 DirectionWheel = TrWheelFl.localEulerAngles;
-        DirectionWheel.y = Turn;
-        TrWheelFl.localEulerAngles = DirectionWheel;
-        TrWheelFr.localEulerAngles = DirectionWheel;
+        //  Vector3 DirectionWheel = TrWheelFl.localEulerAngles + new Vector3(0,0,180);
+        //  DirectionWheel.y = Turn;
+
 
         TrWheelBl.Rotate(ActualVelocity, 0, 0);
         TrWheelFl.Rotate(ActualVelocity, 0, 0);
         TrWheelBr.Rotate(ActualVelocity, 0, 0);
         TrWheelFr.Rotate(ActualVelocity, 0, 0);
+        TrWheelFl.localEulerAngles = new Vector3(TrWheelFl.localEulerAngles.x,Turn, 0);
+        TrWheelFr.localEulerAngles = new Vector3(TrWheelFr.localEulerAngles.x, Turn, 0);
     }
     private void OnTriggerEnter(Collider other)
     {

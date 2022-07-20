@@ -18,6 +18,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     Player[] players;
     [SerializeField] Text NameText;
     public string Name;
+    public int IdPlayer;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     { // Create a unique position for the player
@@ -25,6 +26,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
         // Keep track of the player avatars so we can remove it when they disconnect
         _spawnedCharacters.Add(player, networkPlayerObject);
+        IdPlayer = player.PlayerId;
     }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {  // Find and remove the players avatar
@@ -110,7 +112,9 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void InitGame()
     {
         players = FindObjectsOfType<Player>();
-        FindObjectOfType<GameManager>().Race(players);   
+        FindObjectOfType<ControlCamera>().Follow = true;
+        FindObjectOfType<ControlCamera>().SetCam();
+        StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));  
     }
     private void Update()
     {

@@ -12,10 +12,12 @@ public class Player : NetworkBehaviour
     [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn;
     [SerializeField] int PointControl, Laps;
     public bool End;
+    GameManager manager;
 
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();
+        manager = FindObjectOfType<GameManager>();
     }
     private void Start()
     {
@@ -23,7 +25,16 @@ public class Player : NetworkBehaviour
         {
             this.gameObject.name = "PlayerLocal";
             ControlCamera.FollowEvent?.Invoke();
-        } 
+        }
+        Init(FindObjectOfType<BasicSpawner>().IdPlayer);
+    }
+    void Init(int player)
+    {
+        FindObjectOfType<GameManager>().Race(this.GetComponent<Player>(),player);
+    }
+    public void Update()
+    {
+     //   if(Laps == manager.Laps) 
     }
     public override void FixedUpdateNetwork()
     {

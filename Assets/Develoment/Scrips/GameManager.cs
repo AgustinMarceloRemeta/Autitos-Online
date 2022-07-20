@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Material NewMaterial;
     void Start()
     {
-        
+       
     }
 
 
@@ -18,20 +18,22 @@ public class GameManager : MonoBehaviour
        
     }
 
-    public void Race(Player[] players) 
+    public void Race(Player player, int id) 
     {
-        for (int i = 0; i < players.Length; i++)
-        {
-            players[i].gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
-            players[i].gameObject.transform.position = Positions[i];
-            players[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            StartCoroutine(Countdown(players));
-        }
+        for (int i = 0; i < Positions.Length; i++)        
+            if (id == i)
+            {
+                player.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+                player.gameObject.transform.position = Positions[i];
+                player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            }
+            
     }
-    IEnumerator Countdown(Player[] players)
+   public IEnumerator Countdown(Player[] player)
     {
         yield return new WaitForSeconds(3);
-        foreach (var item in players) item.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        for (int i = 0; i < player.Length; i++)
+        player[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         this.GetComponent<MeshRenderer>().material = NewMaterial;
     }
  

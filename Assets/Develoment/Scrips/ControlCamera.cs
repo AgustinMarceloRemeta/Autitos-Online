@@ -9,6 +9,7 @@ public class ControlCamera : MonoBehaviour
     GameObject Player;
     public static Action FollowEvent;
     [SerializeField]float InitY,CameraY ,SpeedAnim;
+    public bool Follow;
     void Start()
     {
         
@@ -17,7 +18,8 @@ public class ControlCamera : MonoBehaviour
 
     void Update()
     {
-        FollowCamera();
+        if (Follow) FollowCamera();
+        
 
     }
     void FollowCamera()
@@ -26,14 +28,17 @@ public class ControlCamera : MonoBehaviour
         {
             this.gameObject.transform.LookAt(Player.transform);
             float Vel = Time.deltaTime * SpeedAnim;
-            //if (InitY > CameraY) InitY -= Vel;
+            if (InitY > CameraY) InitY -= Vel;
             this.transform.position = new Vector3(this.transform.position.x,InitY, this.transform.position.z);
         }
     }
     void AsignPlayer()
     {
         Player = GameObject.Find("PlayerLocal");
-        this.transform.position = Player.transform.position - Distance;
+    }
+   public void SetCam()
+    {
+        this.transform.localPosition = Player.transform.localPosition + Distance;
         this.transform.SetParent(Player.transform);
     }
     private void OnEnable()

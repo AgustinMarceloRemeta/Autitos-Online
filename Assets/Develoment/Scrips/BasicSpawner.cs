@@ -109,12 +109,11 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Panel.SetActive(false);
         }
     }
+    [Rpc]
     public void InitGame()
     {
         players = FindObjectsOfType<Player>();
-        FindObjectOfType<ControlCamera>().Follow = true;
-        FindObjectOfType<ControlCamera>().SetCam();
-        StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));  
+        StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));
     }
     private void Update()
     {

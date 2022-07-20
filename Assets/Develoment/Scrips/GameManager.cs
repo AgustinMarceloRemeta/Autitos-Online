@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < players.Length; i++)
         {
+            players[i].gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             players[i].gameObject.transform.position = Positions[i];
             players[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             StartCoroutine(Countdown(players));

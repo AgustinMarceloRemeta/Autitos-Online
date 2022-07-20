@@ -10,6 +10,7 @@ public class Player : NetworkBehaviour
     [SerializeField] WheelCollider WheelBl, WheelBr, WheelFr, WheelFl;
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
     [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn;
+    [SerializeField] int PointControl, Laps;
 
     private void Awake()
     {
@@ -44,20 +45,21 @@ public class Player : NetworkBehaviour
             {
                 WheelFl.motorTorque = Force * data.Force * Runner.DeltaTime;
                 WheelFr.motorTorque = Force * data.Force * Runner.DeltaTime;
-                WheelBl.motorTorque = Force * data.Force * Runner.DeltaTime;
-                WheelBl.motorTorque = Force * data.Force * Runner.DeltaTime;
+              //  WheelBl.motorTorque = Force * data.Force * Runner.DeltaTime;
+              //  WheelBr.motorTorque = Force * data.Force * Runner.DeltaTime;
             }
             else
             {
                 WheelFl.motorTorque = 0;
                 WheelFr.motorTorque = 0;
-                WheelBl.motorTorque = 0;
-                WheelBl.motorTorque = 0;
+              //  WheelBl.motorTorque = 0;
+             //   WheelBr.motorTorque = 0;
             }
 
             Turn = AnguledDirection * data.turn;
             WheelFl.steerAngle = Turn;
             WheelFr.steerAngle = Turn;
+            
 
         }
     }
@@ -73,5 +75,28 @@ public class Player : NetworkBehaviour
         TrWheelFl.Rotate(ActualVelocity, 0, 0);
         TrWheelBr.Rotate(ActualVelocity, 0, 0);
         TrWheelFr.Rotate(ActualVelocity, 0, 0);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        ControlPoint controlPoint = other.gameObject.GetComponent<ControlPoint>();
+        if (controlPoint != null)
+        {
+            switch (controlPoint.Order)
+            {
+                case 1: if (PointControl == 0) PointControl++;
+                    else if (PointControl == 5) { Laps++; PointControl = 1; }
+                    break;
+                case 2: if (PointControl == 1) PointControl++;
+                    break;
+                case 3: if (PointControl == 2) PointControl++;
+                    break;
+                case 4: if (PointControl == 3) PointControl++;
+                    break;
+                case 5:if (PointControl == 4) PointControl++;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

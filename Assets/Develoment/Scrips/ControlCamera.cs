@@ -25,7 +25,6 @@ public class ControlCamera : MonoBehaviour
         if (Player != null)
         {
             this.gameObject.transform.LookAt(Player.transform);
-            this.transform.SetParent(Player.transform);
             float Vel = Time.deltaTime * SpeedAnim;
             if (InitY > CameraY) InitY -= Vel;
             this.transform.position = new Vector3(this.transform.position.x,InitY, this.transform.position.z);
@@ -35,6 +34,7 @@ public class ControlCamera : MonoBehaviour
     {
         Player = GameObject.Find("PlayerLocal");
         this.transform.position = Player.transform.position - Distance;
+        this.transform.SetParent(Player.transform);
     }
     private void OnEnable()
     {

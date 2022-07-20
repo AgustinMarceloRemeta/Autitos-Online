@@ -5,6 +5,7 @@ using System;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 
@@ -15,6 +16,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] GameObject Panel;
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     Player[] players;
+    [SerializeField] Text NameText;
+    public string Name;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     { // Create a unique position for the player
@@ -80,7 +83,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             SessionName = "TestRoom",
             Scene = SceneManager.GetActiveScene().buildIndex,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
-            PlayerCount = 7 //maximo de players            
+            PlayerCount = 7 //maximo de players,
+           
         });
     }
 
@@ -108,6 +112,11 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         players = FindObjectsOfType<Player>();
         FindObjectOfType<GameManager>().Race(players);   
     }
+    private void Update()
+    {
+        Name = NameText.text;
+    }
+
 
 }
 

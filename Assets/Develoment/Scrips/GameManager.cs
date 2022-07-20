@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
    public IEnumerator Countdown(Player[] player)
     {
         FindObjectOfType<ControlCamera>().Follow = true;
-        FindObjectOfType<ControlCamera>().SetCam();
+
         yield return new WaitForSeconds(3);
         for (int i = 0; i < player.Length; i++)
         player[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;

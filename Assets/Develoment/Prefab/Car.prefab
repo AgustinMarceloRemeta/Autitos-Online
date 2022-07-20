@@ -335,7 +335,9 @@ MonoBehaviour:
   Turn: 0
   PointControl: 0
   Laps: 0
-  End: 0
+  NewCamera: {fileID: 0}
+  _Name: 
+  OldName: 
 --- !u!114 &5457375800738436399
 MonoBehaviour:
   m_ObjectHideFlags: 0

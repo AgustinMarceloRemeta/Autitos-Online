@@ -13,7 +13,8 @@ public class Player : NetworkBehaviour
     [SerializeField] int PointControl, Laps;
     [SerializeField] GameObject NewCamera;
     GameManager manager;
-    public string Name;
+    [Networked] public string Name { get; set; }
+    public string OldName;
 
     private void Awake()
     {
@@ -26,11 +27,14 @@ public class Player : NetworkBehaviour
         {
             this.gameObject.name = "PlayerLocal";
             ControlCamera.FollowEvent?.Invoke();
+            OldName = FindObjectOfType<BasicSpawner>().Name;
+            if (OldName == "") OldName = "Jugador sin nombre";
         }
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
-        Name = FindObjectOfType<BasicSpawner>().Name;
-        if (Name == "") Name = "Jugador sin nombre";
+
+
     }
+   
     void Init(int player)
     {
         FindObjectOfType<GameManager>().Race(this.GetComponent<Player>(),player);
@@ -41,7 +45,7 @@ public class Player : NetworkBehaviour
         if (Laps == manager.LapsForWin)
         {
             manager.ListText(Name);
-            GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
+            if (Object.HasInputAuthority)  GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
             Runner.Despawn(GetComponent<NetworkObject>());
         }
     }
@@ -62,7 +66,7 @@ public class Player : NetworkBehaviour
     {
         Movement();
         VisualWhels();
-    }
+        if (Object.HasInputAuthority) Name = OldName;    }
 
     private void Movement()
     {

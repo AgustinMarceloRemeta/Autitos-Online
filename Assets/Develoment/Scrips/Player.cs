@@ -30,17 +30,20 @@ public class Player : NetworkBehaviour
         if (Object.HasInputAuthority)
         {
             this.gameObject.name = "LocalP";
-            ControlCamera.FollowEvent?.Invoke();
-            Name = FindObjectOfType<BasicSpawner>().Name;
-            if (Name == "") Name = "Jugador sin nombre";
+            RPC_SetName();
         }
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
 
 
     }
 
-
-   
+    [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.StateAuthority)]
+    void RPC_SetName()
+    {
+        ControlCamera.FollowEvent?.Invoke();
+        Name = FindObjectOfType<BasicSpawner>().Name;
+        if (Name == "") Name = "Jugador sin nombre";
+    }
 
     void Init(int player)
     {

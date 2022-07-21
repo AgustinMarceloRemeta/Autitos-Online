@@ -18,7 +18,7 @@ public class Player : NetworkBehaviour
     public NetworkString<_32> Name { get; set; }
    // public string NameLocal;
     public PlayerData data;
-    // public string OldName;
+     public string OldName;
 
     private void Awake()
     {
@@ -69,7 +69,7 @@ public class Player : NetworkBehaviour
     {
         //   if(Laps == manager.Laps) 
         Win();
-
+        OldName = data.Name.ToString();
     }
     public override void FixedUpdateNetwork()
     {

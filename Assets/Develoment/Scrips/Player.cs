@@ -29,7 +29,7 @@ public class Player : NetworkBehaviour
         {
             ControlCamera.FollowEvent?.Invoke();
             Name = FindObjectOfType<BasicSpawner>().Name;
-            if (Name == "") Name = "Jugador sin nombre";
+            if (Name == "") Name  = "Jugador sin nombre";
             this.gameObject.name = Name;
         }
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);

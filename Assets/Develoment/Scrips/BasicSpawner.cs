@@ -17,7 +17,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     Player[] players;
     [SerializeField] Text NameText;
-    public NetworkString<_64> Name { get; set; }
+    public NetworkString<_32> Name { get; set; }
     public int IdPlayer;
     [SerializeField] int MaxPlayersRoom;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
@@ -25,12 +25,14 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     { // Create a unique position for the player
         Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.DefaultPlayers) * 3, 1, 0);
         NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
+
         // Keep track of the player avatars so we can remove it when they disconnect
         _spawnedCharacters.Add(player, networkPlayerObject);
         IdPlayer = player.PlayerId;
         if(IdPlayer == MaxPlayersRoom-1) Button.SetActive(true);
         Name = NameText.text;
-        print(Name);
+
+       // print(Name);
     }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {  // Find and remove the players avatar

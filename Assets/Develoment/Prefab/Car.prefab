@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 8878986291818987137}
   - component: {fileID: 5457375800738436399}
   - component: {fileID: 5099995744435428587}
+  - component: {fileID: 4571897482220277122}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -337,8 +338,7 @@ MonoBehaviour:
   Laps: 0
   NewCamera: {fileID: 0}
   NewPosition: {x: -44, y: 1, z: 709}
-  _Name: 
-  OldName: 
+  data: {fileID: 4571897482220277122}
 --- !u!114 &5457375800738436399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +390,18 @@ MonoBehaviour:
     RotBlendStart: 0.1
     RotBlendEnd: 0.5
     RotTeleportRadians: 1.5
+--- !u!114 &4571897482220277122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454898107187813369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6e15f5c6dc6dd46a0d4f1cd87f894d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1797428622398806561
 GameObject:
   m_ObjectHideFlags: 0

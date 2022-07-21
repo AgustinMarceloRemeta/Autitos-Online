@@ -15,8 +15,9 @@ public class Player : NetworkBehaviour
     [SerializeField] GameObject NewCamera;
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
-    public NetworkString<_64> Name { get; set; }
-    public string NameLocal;
+    public NetworkString<_32> Name { get; set; }
+   // public string NameLocal;
+    public PlayerData data;
     // public string OldName;
 
     private void Awake()
@@ -30,20 +31,15 @@ public class Player : NetworkBehaviour
         if (Object.HasInputAuthority)
         {
             this.gameObject.name = "LocalP";
-            RPC_SetName();
+            data.RPC_SetName(FindObjectOfType<BasicSpawner>().Name);
         }
-        Init(FindObjectOfType<BasicSpawner>().IdPlayer);
-
-
-    }
-
-    [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.All)]
-    void RPC_SetName()
-    {
         ControlCamera.FollowEvent?.Invoke();
-        Name = FindObjectOfType<BasicSpawner>().Name;
-        if (Name == "") Name = "Jugador sin nombre";
+        Init(FindObjectOfType<BasicSpawner>().IdPlayer);
     }
+
+   
+  
+
 
     void Init(int player)
     {
@@ -80,7 +76,7 @@ public class Player : NetworkBehaviour
         Movement();
         VisualWhels();
         //    if (Object.HasInputAuthority) Name = OldName; 
-        NameLocal = Name.ToString();
+        //NameLocal = Name.ToString();
     }
 
     private void Movement()

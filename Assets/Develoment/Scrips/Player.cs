@@ -14,36 +14,30 @@ public class Player : NetworkBehaviour
     [SerializeField] GameObject NewCamera;
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
-    [Networked] public string Name { get; set; }
+    public NetworkString<_16> Name { get; set; }
    // public string OldName;
 
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();
         manager = FindObjectOfType<GameManager>();
+        if (Object.HasInputAuthority)
+        {
 
+            this.gameObject.name = "LocalP";
+            ControlCamera.FollowEvent?.Invoke();
+            Name = FindObjectOfType<BasicSpawner>().Name;
+            if (Name == "") Name  = "Jugador sin nombre";
+        }
     }
     private void Start()
     {
-        if (Object.HasInputAuthority)
-        {
-            RPC_ChangeName();
-        }
+     
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
-
+        
 
     }
-
-
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    private void RPC_ChangeName()
-    {
-        ControlCamera.FollowEvent?.Invoke();
-        Name = FindObjectOfType<BasicSpawner>().Name;
-        if (Name == "") Name = "Jugador sin nombre";
-        this.gameObject.name = Name;
-    }
-
+   
     void Init(int player)
     {
         FindObjectOfType<GameManager>().Race(this.GetComponent<Player>(),player);
@@ -53,7 +47,7 @@ public class Player : NetworkBehaviour
     {
         if (Laps == manager.LapsForWin)
         {
-            manager.ListText(Name);
+            manager.ListText(Name.ToString());
             if (Object.HasInputAuthority)  GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
             // Runner.Despawn(GetComponent<NetworkObject>());
             this.transform.position = NewPosition;

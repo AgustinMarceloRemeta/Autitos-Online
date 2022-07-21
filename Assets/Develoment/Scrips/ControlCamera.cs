@@ -29,7 +29,7 @@ public class ControlCamera : MonoBehaviour
 
     void AsignPlayer()
     {
-        Player = GameObject.Find(FindObjectOfType<BasicSpawner>().Name);
+        Player = GameObject.Find("LocalP");
     }
 
     private void OnEnable()

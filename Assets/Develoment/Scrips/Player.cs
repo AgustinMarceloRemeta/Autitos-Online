@@ -10,15 +10,18 @@ public class Player : NetworkBehaviour
     Rigidbody Rb;
     [SerializeField] WheelCollider WheelBl, WheelBr, WheelFr, WheelFl;
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
-    [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn;
+    [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn, breakForce;
     [SerializeField] int PointControl, Laps;
     [SerializeField] GameObject NewCamera;
+
+    public float currentBreakForce;
+
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
     public NetworkString<_32> Name { get; set; }
    // public string NameLocal;
     public PlayerData data;
-     public string OldName;
+    public string OldName;
     public bool End;
 
     private void Awake()
@@ -74,9 +77,19 @@ public class Player : NetworkBehaviour
     {
         Movement();
         VisualWhels();
+        currentBreakForce = true ? breakForce : 0f;
+        ApplyBreaking();       
         //    if (Object.HasInputAuthority) Name = OldName; 
         //NameLocal = Name.ToString();
     }
+    
+    private void ApplyBreaking()
+ {
+    WheelFr.brakeTorque = currentBreakForce;
+    WheelBr.brakeTorque = currentBreakForce;
+    WheelBl.brakeTorque = currentBreakForce;
+    WheelFl.brakeTorque = currentBreakForce;
+ }
     #region Gameplay
     private void Movement()
     {

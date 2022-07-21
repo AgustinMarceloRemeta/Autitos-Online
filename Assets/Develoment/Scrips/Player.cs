@@ -16,6 +16,7 @@ public class Player : NetworkBehaviour
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
     public NetworkString<_64> Name { get; set; }
+    public string NameLocal;
     // public string OldName;
 
     private void Awake()
@@ -69,6 +70,7 @@ public class Player : NetworkBehaviour
     {
         //   if(Laps == manager.Laps) 
         Win();
+        NameLocal = Name.ToString();
     }
     public override void FixedUpdateNetwork()
     {

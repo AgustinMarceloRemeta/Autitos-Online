@@ -11200,6 +11200,7 @@ GameObject:
   - component: {fileID: 1627575920}
   - component: {fileID: 1627575922}
   - component: {fileID: 1627575919}
+  - component: {fileID: 1627575923}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -11295,6 +11296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dce5096477bca94ba3f0ec24cf56796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   Positions:
   - {x: -2, y: 1, z: 230}
   - {x: 2, y: 1, z: 232}
@@ -11306,6 +11308,31 @@ MonoBehaviour:
   NewMaterial: {fileID: 2100000, guid: 11f864ace00aecd46a7fe21b1f8e74f1, type: 2}
   LapsForWin: 1
   TextWin: {fileID: 1332994071}
+  _TextWinString: 
+--- !u!114 &1627575923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627575917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 0
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 11f5591e495841e2b48ed7d06244b397
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1627575922}
+  SimulationBehaviours: []
 --- !u!1001 &1630549709
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,20 +11,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] Material NewMaterial;
     public int LapsForWin;
     [SerializeField] Text TextWin;
+    string TextWinSt;
     void Start()
     {
-        TextWin.text = "Ganadores:" + "\n";
+        TextWinSt = "Ganadores:" + "\n";
     }
 
 
     void Update()
     {
-       
+        TextWin.text = TextWinSt;
     }
 
     public void ListText(string Name)
     {
-   TextWin.text += Name + "\n";
+   TextWinSt += Name + "\n";
     }
 
     public void Race(Player player, int id) 

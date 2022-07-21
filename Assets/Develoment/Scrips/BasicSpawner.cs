@@ -17,7 +17,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     Player[] players;
     [SerializeField] Text NameText;
-    public string Name;
+    public NetworkString<_64> Name { get; set; }
     public int IdPlayer;
     [SerializeField] int MaxPlayersRoom;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
@@ -101,10 +101,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         players = FindObjectsOfType<Player>();
         FindObjectOfType<Player>().RPC_InitGame(players);
         Button.SetActive(false);
-    }
-    private void Update()
-    {
-
     }
 
 

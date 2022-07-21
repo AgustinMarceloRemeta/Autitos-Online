@@ -4,23 +4,47 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.UI;
+using Fusion;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     [SerializeField] Vector3[] Positions;
     [SerializeField] Material NewMaterial;
     public int LapsForWin;
     [SerializeField] Text TextWin;
     string TextWinSt;
+    public List<Player> Players;
+    int Order;
+
     void Start()
     {
         TextWinSt = "Ganadores:" + "\n";
+
+
     }
 
+    public override void FixedUpdateNetwork()
+    {
+        WinPlayer();
+        TextWin.text = TextWinSt;
+    }
+
+    public void WinPlayer()
+    {
+        for (int item = 0; item < Players.Count; item++)        
+        {
+            if (Players[item].End)
+            {
+                Order++;
+                ListText("Puesto " + Order + ": Player " + (item + 1));
+                Players[item].End = false;
+            }
+        }
+    }
 
     void Update()
     {
-        TextWin.text = TextWinSt;
+     
     }
 
     public void ListText(string Name)
@@ -37,7 +61,6 @@ public class GameManager : MonoBehaviour
                 player.gameObject.transform.position = Positions[i];
                 player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             }
-            
     }
    public IEnumerator Countdown(Player[] player)
     {

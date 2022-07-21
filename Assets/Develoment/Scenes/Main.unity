@@ -3636,7 +3636,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 'Iniciar Carrera
+
+'
 --- !u!222 &498197481
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4112,6 +4114,82 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3470137227142777008, guid: 59fa6b9c60bd0a041a2c62617f5b4e95, type: 3}
   m_PrefabInstance: {fileID: 561163335}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &568316722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 568316723}
+  - component: {fileID: 568316725}
+  - component: {fileID: 568316724}
+  m_Layer: 5
+  m_Name: Panel Win
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &568316723
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568316722}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1332994073}
+  m_Father: {fileID: 737986412}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 732.7259, y: -29.584412}
+  m_SizeDelta: {x: -1465.4917, y: 59.1687}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &568316724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568316722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &568316725
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568316722}
+  m_CullTransparentMesh: 1
 --- !u!1001 &568877989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5431,7 +5509,7 @@ RectTransform:
   m_Children:
   - {fileID: 1089998430}
   - {fileID: 1040200576}
-  - {fileID: 1332994073}
+  - {fileID: 568316723}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7389,7 +7467,7 @@ RectTransform:
   m_GameObject: {fileID: 1089998429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 498197479}
   m_Father: {fileID: 737986412}
@@ -7397,7 +7475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 747, y: -344}
+  m_AnchoredPosition: {x: -680, y: -398}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1089998431
@@ -9245,7 +9323,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 'Ganadores:'
 --- !u!222 &1332994072
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9261,16 +9339,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1332994070}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 737986412}
-  m_RootOrder: 2
+  m_Father: {fileID: 568316723}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 686.725, y: -52.985474}
+  m_AnchoredPosition: {x: 34.27417, y: 331.5844}
   m_SizeDelta: {x: 505.1497, y: 413.2061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1361883163
@@ -11296,6 +11374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dce5096477bca94ba3f0ec24cf56796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   Positions:
   - {x: -2, y: 1, z: 230}
   - {x: 2, y: 1, z: 232}
@@ -11307,6 +11386,7 @@ MonoBehaviour:
   NewMaterial: {fileID: 2100000, guid: 11f864ace00aecd46a7fe21b1f8e74f1, type: 2}
   LapsForWin: 1
   TextWin: {fileID: 1332994071}
+  Players: []
 --- !u!114 &1627575923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11328,7 +11408,8 @@ MonoBehaviour:
   NetworkGuid:
     RawGuidValue: 11f5591e495841e2b48ed7d06244b397
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 1627575922}
   SimulationBehaviours: []
 --- !u!1001 &1630549709
 PrefabInstance:
@@ -11418,7 +11499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1638614645
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11574,10 +11655,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 1089998429}
   Panel: {fileID: 1040200575}
+  Winners: {fileID: 568316722}
   _playerPrefab:
     RawGuidValue: ffa9e3e07df03eb478e3c3ade6cbe45f
   NameText: {fileID: 678372352}
-  Name: 
   IdPlayer: 0
   MaxPlayersRoom: 7
 --- !u!4 &1641496986

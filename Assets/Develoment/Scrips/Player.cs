@@ -19,6 +19,7 @@ public class Player : NetworkBehaviour
    // public string NameLocal;
     public PlayerData data;
      public string OldName;
+    public bool End;
 
     private void Awake()
     {
@@ -31,26 +32,24 @@ public class Player : NetworkBehaviour
         if (Object.HasInputAuthority)
         {
             this.gameObject.name = "LocalP";
-            data.RPC_SetName(FindObjectOfType<BasicSpawner>().Name);
+            //data.RPC_SetName(FindObjectOfType<BasicSpawner>().Name);
         }
         ControlCamera.FollowEvent?.Invoke();
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
+        manager.Players.Add(this);
     }
-
-   
-  
-
 
     void Init(int player)
     {
-        FindObjectOfType<GameManager>().Race(this.GetComponent<Player>(), player);
+        manager.Race(this.GetComponent<Player>(), player);
     }
 
     void Win()
     {
         if (Laps == manager.LapsForWin)
         {
-            manager.ListText(Name.ToString());
+            //  manager.ListText(Name.ToString());
+            End = true;
             if (Object.HasInputAuthority) GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
             // Runner.Despawn(GetComponent<NetworkObject>());
             this.transform.position = NewPosition;
@@ -69,7 +68,7 @@ public class Player : NetworkBehaviour
     {
         //   if(Laps == manager.Laps) 
         Win();
-        OldName = data.Name.ToString();
+        if (End) manager.WinPlayer();
     }
     public override void FixedUpdateNetwork()
     {
@@ -78,7 +77,7 @@ public class Player : NetworkBehaviour
         //    if (Object.HasInputAuthority) Name = OldName; 
         //NameLocal = Name.ToString();
     }
-
+    #region Gameplay
     private void Movement()
     {
         if (GetInput(out NetworkInputData data))
@@ -154,4 +153,5 @@ public class Player : NetworkBehaviour
             }
         }
     }
+    #endregion
 }

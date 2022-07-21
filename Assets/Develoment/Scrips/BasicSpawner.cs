@@ -13,13 +13,13 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] GameObject Button;
     private NetworkRunner _runner;
-    [SerializeField] GameObject Panel;
+    [SerializeField] GameObject Panel, Winners;
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     Player[] players;
     [SerializeField] Text NameText;
     public NetworkString<_32> Name { get; set; }
     public int IdPlayer;
-    [SerializeField] int MaxPlayersRoom;
+    public int MaxPlayersRoom;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     { // Create a unique position for the player
@@ -96,6 +96,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
                StartGame(GameMode.AutoHostOrClient) ;
             }
             Panel.SetActive(false);
+            Winners.SetActive(true);
         }
     }
   public void InitRace()

@@ -13,6 +13,7 @@ public class Player : NetworkBehaviour
     [SerializeField] int PointControl, Laps;
     [SerializeField] GameObject NewCamera;
     GameManager manager;
+    [SerializeField] Vector3 NewPosition;
     [Networked] public string Name { get; set; }
     public string OldName;
 
@@ -46,7 +47,9 @@ public class Player : NetworkBehaviour
         {
             manager.ListText(Name);
             if (Object.HasInputAuthority)  GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
-            Runner.Despawn(GetComponent<NetworkObject>());
+            // Runner.Despawn(GetComponent<NetworkObject>());
+            this.transform.position = NewPosition;
+            Laps = 0;
         }
     }
 

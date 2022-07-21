@@ -70,13 +70,14 @@ public class Player : NetworkBehaviour
     {
         //   if(Laps == manager.Laps) 
         Win();
-        NameLocal = Name.ToString();
+
     }
     public override void FixedUpdateNetwork()
     {
         Movement();
         VisualWhels();
         //    if (Object.HasInputAuthority) Name = OldName; 
+        NameLocal = Name.ToString();
     }
 
     private void Movement()

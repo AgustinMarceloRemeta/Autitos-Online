@@ -29,6 +29,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         _spawnedCharacters.Add(player, networkPlayerObject);
         IdPlayer = player.PlayerId;
         if(IdPlayer == MaxPlayersRoom-1) Button.SetActive(true);
+        Name = NameText.text;
         print(Name);
     }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -103,7 +104,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     }
     private void Update()
     {
-        Name= NameText.text;
+
     }
 
 

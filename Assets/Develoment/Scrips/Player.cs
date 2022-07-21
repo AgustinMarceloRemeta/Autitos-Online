@@ -37,7 +37,7 @@ public class Player : NetworkBehaviour
 
     }
 
-    [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.StateAuthority)]
+    [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.All)]
     void RPC_SetName()
     {
         ControlCamera.FollowEvent?.Invoke();

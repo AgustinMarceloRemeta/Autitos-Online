@@ -7,9 +7,10 @@ public class ChangeColor : MonoBehaviour
      [SerializeField] GameObject[] Parts;
      public void ChangeColors(Material mat)
     {
-        foreach (var item in Parts)
+        for (int item = 0; item < Parts.Length; item++) 
         {
-            item.GetComponent<MeshRenderer>().material = mat;
+            Parts[item].GetComponent<MeshRenderer>().materials[1].color = mat.color;
+           //  Parts[item].GetComponent<MeshRenderer>().material = mat;
         }
     }
 }

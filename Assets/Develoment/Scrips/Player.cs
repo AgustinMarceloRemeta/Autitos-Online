@@ -46,13 +46,10 @@ public class Player : NetworkBehaviour
         if (Laps == manager.LapsForWin)
         {
             manager.ListText(Name);
-            if (Object.HasInputAuthority)
-            {
-                GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
-                // Runner.Despawn(GetComponent<NetworkObject>());
-                this.transform.position = NewPosition;
-                Laps = 0;
-            }
+            if (Object.HasInputAuthority)  GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
+            // Runner.Despawn(GetComponent<NetworkObject>());
+            this.transform.position = NewPosition;
+            Laps = 0;
         }
     }
 

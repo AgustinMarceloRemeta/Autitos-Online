@@ -335,9 +335,11 @@ MonoBehaviour:
   ActualVelocity: 0
   AnguledDirection: 40
   Turn: 0
+  breakForce: 9999999
   PointControl: 0
   Laps: 0
   NewCamera: {fileID: 0}
+  currentBreakForce: 0
   NewPosition: {x: -44, y: 1, z: 709}
   data: {fileID: 4571897482220277122}
   OldName: 

@@ -77,24 +77,24 @@ public class Player : NetworkBehaviour
     {
         Movement();
         VisualWhels();
-        currentBreakForce = true ? breakForce : 0f;
-        ApplyBreaking();       
+      
         //    if (Object.HasInputAuthority) Name = OldName; 
         //NameLocal = Name.ToString();
     }
     
     private void ApplyBreaking()
  {
-    WheelFr.brakeTorque = currentBreakForce;
-    WheelBr.brakeTorque = currentBreakForce;
-    WheelBl.brakeTorque = currentBreakForce;
-    WheelFl.brakeTorque = currentBreakForce;
+    WheelFr.brakeTorque = currentBreakForce*3 * Runner.DeltaTime;
+    WheelBr.brakeTorque = currentBreakForce*3 * Runner.DeltaTime;
+    WheelBl.brakeTorque = currentBreakForce*3 * Runner.DeltaTime;
+    WheelFl.brakeTorque = currentBreakForce*3 * Runner.DeltaTime;
  }
     #region Gameplay
     private void Movement()
     {
         if (GetInput(out NetworkInputData data))
         {
+
             /*
             data.direction.Normalize();
             transform.Translate(data.direction * Runner.DeltaTime);
@@ -102,7 +102,9 @@ public class Player : NetworkBehaviour
             ActualVelocity = 2 * Mathf.PI * WheelFl.radius * WheelFl.rpm * 60 / 1000;
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
             Velocity = Rb.velocity.magnitude * 15;
-            if (data.Break) print("Hola");
+
+            currentBreakForce = data.Break ? breakForce : 0f;
+            ApplyBreaking();
 
             if (Velocity < VelocityMax)
             {

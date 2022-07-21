@@ -9,7 +9,10 @@ public class ChangeColor : MonoBehaviour
     {
         for (int item = 0; item < Parts.Length; item++) 
         {
-            Parts[item].GetComponent<MeshRenderer>().materials[1].color = mat.color;
+            if (item >= 3) Parts[item].GetComponent<MeshRenderer>().materials[3].color = mat.color;
+            else  Parts[item].GetComponent<MeshRenderer>().materials[1].color = mat.color;
+
+            
            //  Parts[item].GetComponent<MeshRenderer>().material = mat;
         }
     }

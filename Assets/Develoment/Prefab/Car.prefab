@@ -190,7 +190,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: c049003e002c1fa48a8b90db96a4ec44, type: 2}
   - {fileID: 2100000, guid: 69064292686485144ba10fedd27f14ca, type: 2}
-  - {fileID: 2100000, guid: 69064292686485144ba10fedd27f14ca, type: 2}
+  - {fileID: 2100000, guid: c049003e002c1fa48a8b90db96a4ec44, type: 2}
   - {fileID: 2100000, guid: 529c0ca04d30e814faa0ffe367bbfd07, type: 2}
   - {fileID: 2100000, guid: 379f50a8862eeab4fa370274f88bc542, type: 2}
   m_StaticBatchInfo:
@@ -420,8 +420,8 @@ MonoBehaviour:
   Parts:
   - {fileID: 1162022119372423872}
   - {fileID: 3614797802843380528}
-  - {fileID: 7968848731403418353}
   - {fileID: 7135366996735380555}
+  - {fileID: 7968848731403418353}
   - {fileID: 9130154244784596822}
 --- !u!1 &1797428622398806561
 GameObject:

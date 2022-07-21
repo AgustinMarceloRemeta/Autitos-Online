@@ -58,7 +58,6 @@ public class GameManager : NetworkBehaviour
         for (int i = 0; i < Positions.Length; i++)        
             if (id == i)
             {
-                player.gameObject.GetComponent<ChangeColor>().ChangeColors(material[i]);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
                 player.gameObject.transform.position = Positions[i];
                 player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -67,7 +66,8 @@ public class GameManager : NetworkBehaviour
    public IEnumerator Countdown(Player[] player)
     {
         FindObjectOfType<ControlCamera>().Follow = true;
-
+        for (int i = 0; i < player.Length; i++)
+            player[i].gameObject.GetComponent<ChangeColor>().ChangeColors(material[i]);
         yield return new WaitForSeconds(3);
         for (int i = 0; i < player.Length; i++)
         player[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;

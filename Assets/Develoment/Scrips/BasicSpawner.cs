@@ -17,7 +17,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     Player[] players;
     [SerializeField] Text NameText;
-    [Networked] public string Name { get; set; }
+    public string Name;
     public int IdPlayer;
     [SerializeField] int MaxPlayersRoom;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();

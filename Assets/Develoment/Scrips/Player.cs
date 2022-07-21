@@ -27,16 +27,23 @@ public class Player : NetworkBehaviour
     {
         if (Object.HasInputAuthority)
         {
-            ControlCamera.FollowEvent?.Invoke();
-            Name = FindObjectOfType<BasicSpawner>().Name;
-            if (Name == "") Name  = "Jugador sin nombre";
-            this.gameObject.name = Name;
+            RPC_ChangeName();
         }
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
 
 
     }
-   
+
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void RPC_ChangeName()
+    {
+        ControlCamera.FollowEvent?.Invoke();
+        Name = FindObjectOfType<BasicSpawner>().Name;
+        if (Name == "") Name = "Jugador sin nombre";
+        this.gameObject.name = Name;
+    }
+
     void Init(int player)
     {
         FindObjectOfType<GameManager>().Race(this.GetComponent<Player>(),player);

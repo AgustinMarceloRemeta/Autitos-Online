@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using Fusion;
 
 public class Player : NetworkBehaviour
 {
-    public NetworkString<_16> Name { get; set; }
+    [Header("Movement")]
     Rigidbody Rb;
     [SerializeField] WheelCollider WheelBl, WheelBr, WheelFr, WheelFl;
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
@@ -14,31 +15,35 @@ public class Player : NetworkBehaviour
     [SerializeField] GameObject NewCamera;
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
-
-   // public string OldName;
+    public NetworkString<_64> Name { get; set; }
+    // public string OldName;
 
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();
         manager = FindObjectOfType<GameManager>();
-        if (Object.HasInputAuthority)
-        {
-            Name = FindObjectOfType<BasicSpawner>().Name;
-            if (Name == "") Name = "Jugador sin nombre";
-            this.gameObject.name = Name.ToString();
-        }
+
     }
     private void Start()
     {
-     
+        if (Object.HasInputAuthority)
+        {
+            this.gameObject.name = "LocalP";
+            ControlCamera.FollowEvent?.Invoke();
+            Name = FindObjectOfType<BasicSpawner>().Name;
+            if (Name == "") Name = "Jugador sin nombre";
+        }
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
-        
+
 
     }
+
+
    
+
     void Init(int player)
     {
-        FindObjectOfType<GameManager>().Race(this.GetComponent<Player>(),player);
+        FindObjectOfType<GameManager>().Race(this.GetComponent<Player>(), player);
     }
 
     void Win()
@@ -46,7 +51,7 @@ public class Player : NetworkBehaviour
         if (Laps == manager.LapsForWin)
         {
             manager.ListText(Name.ToString());
-            if (Object.HasInputAuthority)  GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
+            if (Object.HasInputAuthority) GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
             // Runner.Despawn(GetComponent<NetworkObject>());
             this.transform.position = NewPosition;
             Laps = 0;
@@ -56,9 +61,9 @@ public class Player : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RPC_InitGame(Player[] players)
     {
-            StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));  
+        StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));
     }
-    
+
 
     public void Update()
     {
@@ -69,7 +74,7 @@ public class Player : NetworkBehaviour
     {
         Movement();
         VisualWhels();
-    //    if (Object.HasInputAuthority) Name = OldName; 
+        //    if (Object.HasInputAuthority) Name = OldName; 
     }
 
     private void Movement()
@@ -87,21 +92,21 @@ public class Player : NetworkBehaviour
             {
                 WheelFl.motorTorque = Force * data.Force * Runner.DeltaTime;
                 WheelFr.motorTorque = Force * data.Force * Runner.DeltaTime;
-              //  WheelBl.motorTorque = Force * data.Force * Runner.DeltaTime;
-              //  WheelBr.motorTorque = Force * data.Force * Runner.DeltaTime;
+                //  WheelBl.motorTorque = Force * data.Force * Runner.DeltaTime;
+                //  WheelBr.motorTorque = Force * data.Force * Runner.DeltaTime;
             }
             else
             {
                 WheelFl.motorTorque = 0;
                 WheelFr.motorTorque = 0;
-              //  WheelBl.motorTorque = 0;
-             //   WheelBr.motorTorque = 0;
+                //  WheelBl.motorTorque = 0;
+                //   WheelBr.motorTorque = 0;
             }
 
             Turn = AnguledDirection * data.turn;
             WheelFl.steerAngle = Turn;
             WheelFr.steerAngle = Turn;
-            
+
 
         }
     }
@@ -116,7 +121,7 @@ public class Player : NetworkBehaviour
         TrWheelFl.Rotate(ActualVelocity, 0, 0);
         TrWheelBr.Rotate(ActualVelocity, 0, 0);
         TrWheelFr.Rotate(ActualVelocity, 0, 0);
-        TrWheelFl.localEulerAngles = new Vector3(TrWheelFl.localEulerAngles.x,Turn, 0);
+        TrWheelFl.localEulerAngles = new Vector3(TrWheelFl.localEulerAngles.x, Turn, 0);
         TrWheelFr.localEulerAngles = new Vector3(TrWheelFr.localEulerAngles.x, Turn, 0);
     }
     private void OnTriggerEnter(Collider other)
@@ -126,16 +131,21 @@ public class Player : NetworkBehaviour
         {
             switch (controlPoint.Order)
             {
-                case 1: if (PointControl == 0) PointControl++;
+                case 1:
+                    if (PointControl == 0) PointControl++;
                     else if (PointControl == 5) { Laps++; PointControl = 1; }
                     break;
-                case 2: if (PointControl == 1) PointControl++;
+                case 2:
+                    if (PointControl == 1) PointControl++;
                     break;
-                case 3: if (PointControl == 2) PointControl++;
+                case 3:
+                    if (PointControl == 2) PointControl++;
                     break;
-                case 4: if (PointControl == 3) PointControl++;
+                case 4:
+                    if (PointControl == 3) PointControl++;
                     break;
-                case 5:if (PointControl == 4) PointControl++;
+                case 5:
+                    if (PointControl == 4) PointControl++;
                     break;
                 default:
                     break;

@@ -29,6 +29,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         _spawnedCharacters.Add(player, networkPlayerObject);
         IdPlayer = player.PlayerId;
         if(IdPlayer == MaxPlayersRoom-1) Button.SetActive(true);
+        print(Name);
     }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {  // Find and remove the players avatar

@@ -15,21 +15,22 @@ public class Player : NetworkBehaviour
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
     [Networked] public string Name { get; set; }
-    public string OldName;
+   // public string OldName;
 
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();
         manager = FindObjectOfType<GameManager>();
+
     }
     private void Start()
     {
         if (Object.HasInputAuthority)
         {
-            this.gameObject.name = "PlayerLocal";
             ControlCamera.FollowEvent?.Invoke();
-            OldName = FindObjectOfType<BasicSpawner>().Name;
-            if (OldName == "") OldName = "Jugador sin nombre";
+            Name = FindObjectOfType<BasicSpawner>().Name;
+            if (Name == "") Name = "Jugador sin nombre";
+            this.gameObject.name = Name;
         }
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
 
@@ -45,18 +46,12 @@ public class Player : NetworkBehaviour
     {
         if (Laps == manager.LapsForWin)
         {
-            // manager.ListText(Name);
-            RPC_AsigText();
+            manager.ListText(Name);
             if (Object.HasInputAuthority)  GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
             // Runner.Despawn(GetComponent<NetworkObject>());
             this.transform.position = NewPosition;
             Laps = 0;
         }
-    }
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    public void RPC_AsigText()
-    {
-        manager.ListText(Name);
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -75,7 +70,8 @@ public class Player : NetworkBehaviour
     {
         Movement();
         VisualWhels();
-        if (Object.HasInputAuthority) Name = OldName;    }
+    //    if (Object.HasInputAuthority) Name = OldName; 
+    }
 
     private void Movement()
     {

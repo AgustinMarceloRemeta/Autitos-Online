@@ -15,6 +15,7 @@ public class GameManager : NetworkBehaviour
     string TextWinSt;
     public List<Player> Players;
     int Order;
+    [SerializeField] Material[] material;
 
     void Start()
     {
@@ -57,6 +58,7 @@ public class GameManager : NetworkBehaviour
         for (int i = 0; i < Positions.Length; i++)        
             if (id == i)
             {
+                player.gameObject.GetComponent<ChangeColor>().ChangeColors(material[i]);
                 player.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
                 player.gameObject.transform.position = Positions[i];
                 player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;

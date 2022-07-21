@@ -5,7 +5,7 @@ using Fusion;
 
 public class Player : NetworkBehaviour
 {
-    [Header("Movement")]
+    public NetworkString<_16> Name { get; set; }
     Rigidbody Rb;
     [SerializeField] WheelCollider WheelBl, WheelBr, WheelFr, WheelFl;
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
@@ -14,7 +14,7 @@ public class Player : NetworkBehaviour
     [SerializeField] GameObject NewCamera;
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
-    public NetworkString<_16> Name { get; set; }
+
    // public string OldName;
 
     private void Awake()
@@ -23,11 +23,9 @@ public class Player : NetworkBehaviour
         manager = FindObjectOfType<GameManager>();
         if (Object.HasInputAuthority)
         {
-
-            this.gameObject.name = "LocalP";
-            ControlCamera.FollowEvent?.Invoke();
             Name = FindObjectOfType<BasicSpawner>().Name;
-            if (Name == "") Name  = "Jugador sin nombre";
+            if (Name == "") Name = "Jugador sin nombre";
+            this.gameObject.name = Name.ToString();
         }
     }
     private void Start()

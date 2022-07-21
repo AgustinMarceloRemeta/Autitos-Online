@@ -45,12 +45,18 @@ public class Player : NetworkBehaviour
     {
         if (Laps == manager.LapsForWin)
         {
-            manager.ListText(Name);
+            // manager.ListText(Name);
+            RPC_AsigText();
             if (Object.HasInputAuthority)  GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
             // Runner.Despawn(GetComponent<NetworkObject>());
             this.transform.position = NewPosition;
             Laps = 0;
         }
+    }
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_AsigText()
+    {
+        manager.ListText(Name);
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]

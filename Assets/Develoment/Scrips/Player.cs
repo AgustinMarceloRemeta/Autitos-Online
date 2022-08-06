@@ -78,14 +78,14 @@ public class Player : NetworkBehaviour
     {
         //   if(Laps == manager.Laps) 
         Win();
-        if (End) manager.WinPlayer();
+       
 
     }
     public override void FixedUpdateNetwork()
     {
         Movement();
         VisualWhels();
-      
+        if (End) manager.WinPlayer();
         //    if (Object.HasInputAuthority) Name = OldName; 
         //NameLocal = Name.ToString();
     }

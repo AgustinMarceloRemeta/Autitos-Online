@@ -23,8 +23,6 @@ public class Player : NetworkBehaviour
 
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
-
-    public PlayerData data;
     public bool End;
 
     private void Awake()
@@ -143,12 +141,12 @@ public class Player : NetworkBehaviour
         //  DirectionWheel.y = Turn;
 
 
-        TrWheelBl.Rotate(ActualVelocity, 0, 0);
-        TrWheelFl.Rotate(ActualVelocity, 0, 0);
-        TrWheelBr.Rotate(ActualVelocity, 0, 0);
-        TrWheelFr.Rotate(ActualVelocity, 0, 0);
-        TrWheelFl.localEulerAngles = new Vector3(TrWheelFl.localEulerAngles.x, Turn, 0);
-        TrWheelFr.localEulerAngles = new Vector3(TrWheelFr.localEulerAngles.x, Turn, 0);
+        TrWheelBl.Rotate(ActualVelocity*10, 0, 0);
+        TrWheelFl.Rotate(ActualVelocity * 10, 0, 0);
+        TrWheelBr.Rotate(ActualVelocity * 10, 0, 0);
+        TrWheelFr.Rotate(ActualVelocity * 10, 0, 0);
+        TrWheelFl.localEulerAngles = new Vector3(TrWheelFl.localEulerAngles.x, Turn*2, 0);
+        TrWheelFr.localEulerAngles = new Vector3(TrWheelFr.localEulerAngles.x, Turn*2, 0);
     }
     private void OnTriggerEnter(Collider other)
     {

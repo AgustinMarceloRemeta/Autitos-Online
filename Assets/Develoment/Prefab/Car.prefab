@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8340662916379466757}
   - component: {fileID: 1797428623609456330}
   - component: {fileID: 1797428623609456328}
+  - component: {fileID: 3163012127106811079}
   m_Layer: 0
   m_Name: Wheel_BR
   m_TagString: Untagged
@@ -127,6 +128,18 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &3163012127106811079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763523049764016296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1032120742, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1162022119372423872
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +343,7 @@ MonoBehaviour:
   TrWheelBr: {fileID: 1797428623620694076}
   TrWheelFr: {fileID: 1797428624008820878}
   TrWheelFl: {fileID: 1797428623776171475}
-  Force: 9999999
+  Force: 9999
   Velocity: 0
   VelocityMax: 150
   ActualVelocity: 0
@@ -340,6 +353,10 @@ MonoBehaviour:
   PointControl: 0
   Laps: 0
   NewCamera: {fileID: 0}
+  _NickName:
+    _length: 0
+    _data:
+      Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   NameText: {fileID: 3442227105545713554}
   currentBreakForce: 0
   NewPosition: {x: -44, y: 1, z: 709}
@@ -369,7 +386,11 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 8878986291818987137}
   - {fileID: 5099995744435428587}
-  SimulationBehaviours: []
+  SimulationBehaviours:
+  - {fileID: 3523475683448081655}
+  - {fileID: 3163012127106811079}
+  - {fileID: 8015777181727255044}
+  - {fileID: 1898905914385791278}
 --- !u!114 &5099995744435428587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +874,7 @@ GameObject:
   - component: {fileID: 9183019022701836955}
   - component: {fileID: 1797428623609456313}
   - component: {fileID: 1797428623609456312}
+  - component: {fileID: 8015777181727255044}
   m_Layer: 0
   m_Name: Wheel_FL
   m_TagString: Untagged
@@ -967,6 +989,18 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &8015777181727255044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984417562663884124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1032120742, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3390643587749019253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,6 +1179,7 @@ GameObject:
   - component: {fileID: 6803453240186091990}
   - component: {fileID: 1797428623609456334}
   - component: {fileID: 1797428623609456338}
+  - component: {fileID: 3523475683448081655}
   m_Layer: 0
   m_Name: Wheel_BL
   m_TagString: Untagged
@@ -1259,6 +1294,18 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &3523475683448081655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754893398198734890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1032120742, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7032531271133658211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,6 +1319,7 @@ GameObject:
   - component: {fileID: 9172880761441090234}
   - component: {fileID: 1797428623609456327}
   - component: {fileID: 1797428623609456326}
+  - component: {fileID: 1898905914385791278}
   m_Layer: 0
   m_Name: Wheel_FR
   m_TagString: Untagged
@@ -1386,6 +1434,18 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &1898905914385791278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7032531271133658211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1032120742, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7135366996735380555
 GameObject:
   m_ObjectHideFlags: 0

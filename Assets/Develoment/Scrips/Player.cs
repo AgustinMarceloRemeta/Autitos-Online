@@ -14,6 +14,7 @@ public class Player : NetworkBehaviour
     [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn, breakForce;
     [SerializeField] int PointControl, Laps;
     [SerializeField] GameObject NewCamera;
+    [Networked(OnChanged = nameof (OnNickNameChanged))]
     public NetworkString<_16> NickName { get; set; }
     [SerializeField] Text NameText;
 
@@ -39,7 +40,6 @@ public class Player : NetworkBehaviour
             RpcSetNickName(PlayerPrefs.GetString("PlayerNickName"));
             print(PlayerPrefs.GetString("PlayerNickName"));
             NameLocal = NickName.ToString();
-            OnNickNameChanged();
         }
     }
     private void Start()
@@ -181,7 +181,7 @@ public class Player : NetworkBehaviour
     #endregion
 
     #region name 
-    static void onNickNameChanged(Changed<Player> changed)
+    static void  OnNickNameChanged(Changed<Player> changed)
     {
         changed.Behaviour.OnNickNameChanged();
     }

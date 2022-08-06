@@ -74,22 +74,25 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
             PlayerCount = MaxPlayersRoom //maximo de players,
         });
+        print(Name);
     }
 
     // Modificar estos botones
     public void Buttons(string Mode)
     {
+        string NameServer = ServerName.text;
+        if (NameServer == "") NameServer = "No name";
         if (_runner == null)
         {
             //if (GUI.Button(new Rect(500, 0, 200, 40), "Host"))
             if(Mode == "Host")
             {
-               StartGame(GameMode.Host,ServerName.text);
+               StartGame(GameMode.Host,NameServer);
             }
             // if (GUI.Button(new Rect(500, 40, 200, 40), "Join"))
             if (Mode == "AutoHostOrClient")
             {
-               StartGame(GameMode.AutoHostOrClient,ServerName.text) ;
+               StartGame(GameMode.AutoHostOrClient,NameServer) ;
             }
             Panel.SetActive(false);
             Winners.SetActive(true);

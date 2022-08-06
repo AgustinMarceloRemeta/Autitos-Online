@@ -74,7 +74,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
             PlayerCount = MaxPlayersRoom //maximo de players,
         });
-        print(Name);
     }
 
     // Modificar estos botones

@@ -22,7 +22,7 @@ public class Player : NetworkBehaviour
 
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
-    public string NameLocal;
+
     public PlayerData data;
     public bool End;
 
@@ -39,7 +39,6 @@ public class Player : NetworkBehaviour
             this.gameObject.name = "LocalP";
             RpcSetNickName(PlayerPrefs.GetString("PlayerNickName"));
             print(PlayerPrefs.GetString("PlayerNickName"));
-            NameLocal = NickName.ToString();
         }
     }
     private void Start()
@@ -80,6 +79,7 @@ public class Player : NetworkBehaviour
         //   if(Laps == manager.Laps) 
         Win();
         if (End) manager.WinPlayer();
+
     }
     public override void FixedUpdateNetwork()
     {

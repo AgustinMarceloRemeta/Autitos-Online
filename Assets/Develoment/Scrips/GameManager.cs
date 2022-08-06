@@ -26,7 +26,6 @@ public class GameManager : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        WinPlayer();
         TextWin.text = TextWinSt;
     }
 
@@ -37,7 +36,7 @@ public class GameManager : NetworkBehaviour
             if (Players[item].End)
             {
                 Order++;
-                ListText("Puesto " + Order + ": Player " + (item + 1));
+                ListText("Puesto " + Order + ":" + Players[item].NickName.ToString());
                 Players[item].End = false;
             }
         }

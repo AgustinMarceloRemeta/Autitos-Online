@@ -15,6 +15,7 @@ public class Player : NetworkBehaviour
     [SerializeField] int PointControl, Laps;
     [SerializeField] GameObject NewCamera;
     [Networked(OnChanged = nameof (OnNickNameChanged))]
+
     public NetworkString<_16> NickName { get; set; }
     [SerializeField] Text NameText;
 
@@ -38,7 +39,6 @@ public class Player : NetworkBehaviour
         {
             this.gameObject.name = "LocalP";
             RpcSetNickName(PlayerPrefs.GetString("PlayerNickName"));
-            print(PlayerPrefs.GetString("PlayerNickName"));
         }
     }
     private void Start()

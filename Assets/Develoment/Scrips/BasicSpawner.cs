@@ -16,10 +16,9 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] GameObject Panel, Winners;
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     Player[] players;
-  //  [SerializeField] Text NameText;
-   // public NetworkString<_32> Name { get; set; }
     public int IdPlayer;
     public int MaxPlayersRoom;
+    [SerializeField] Text ServerName;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     { // Create a unique position for the player
@@ -30,9 +29,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         _spawnedCharacters.Add(player, networkPlayerObject);
         IdPlayer = player.PlayerId;
         if(IdPlayer == MaxPlayersRoom-1) Button.SetActive(true);
-        //Name = NameText.text;
-
-       // print(Name);
     }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {  // Find and remove the players avatar
@@ -63,21 +59,20 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
 
-    public async void StartGame(GameMode mode)
+    public async void StartGame(GameMode mode, string Name)
     {      
         // Create the Fusion runner and let it know that we will be providing user input
         _runner = gameObject.AddComponent<NetworkRunner>();
         _runner.ProvideInput = true;
-
+      
         // Start or join (depends on gamemode) a session with a specific name
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
-            //SessionName = "TestRoom",
+            SessionName = Name,
             Scene = SceneManager.GetActiveScene().buildIndex,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
             PlayerCount = MaxPlayersRoom //maximo de players,
-           
         });
     }
 
@@ -89,12 +84,12 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             //if (GUI.Button(new Rect(500, 0, 200, 40), "Host"))
             if(Mode == "Host")
             {
-               StartGame(GameMode.Host);
+               StartGame(GameMode.Host,ServerName.text);
             }
             // if (GUI.Button(new Rect(500, 40, 200, 40), "Join"))
             if (Mode == "AutoHostOrClient")
             {
-               StartGame(GameMode.AutoHostOrClient) ;
+               StartGame(GameMode.AutoHostOrClient,ServerName.text) ;
             }
             Panel.SetActive(false);
             Winners.SetActive(true);
@@ -107,6 +102,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         players = FindObjectsOfType<Player>();
         FindObjectOfType<Player>().RPC_InitGame(players);
         Button.SetActive(false);
+        
     }
 
     private void Update()

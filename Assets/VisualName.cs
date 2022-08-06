@@ -16,7 +16,7 @@ public class VisualName : MonoBehaviour
     void Update()
     {
         if (Vector3.Distance(this.transform.position, cam.transform.position) > distance) this.GetComponent<Text>().enabled = false;
-        else this.GetComponent<Text>().enabled = false;
+        else this.GetComponent<Text>().enabled = true;
         this.transform.LookAt(cam.transform);
     }
 }

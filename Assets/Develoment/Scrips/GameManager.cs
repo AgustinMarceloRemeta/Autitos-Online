@@ -27,6 +27,7 @@ public class GameManager : NetworkBehaviour
     public override void FixedUpdateNetwork()
     {
         TextWin.text = TextWinSt;
+        WinPlayer();
     }
 
     public void WinPlayer()

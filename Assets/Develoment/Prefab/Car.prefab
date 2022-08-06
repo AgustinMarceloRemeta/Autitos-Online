@@ -267,9 +267,9 @@ GameObject:
   - component: {fileID: 5962351266483931017}
   - component: {fileID: 8878986291818987137}
   - component: {fileID: 5457375800738436399}
-  - component: {fileID: 5099995744435428587}
   - component: {fileID: 4571897482220277122}
   - component: {fileID: 3808457702211869003}
+  - component: {fileID: 225056099068026300}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -343,13 +343,13 @@ MonoBehaviour:
   TrWheelBr: {fileID: 1797428623620694076}
   TrWheelFr: {fileID: 1797428624008820878}
   TrWheelFl: {fileID: 1797428623776171475}
-  Force: 9999
+  Force: 1000
   Velocity: 0
   VelocityMax: 150
   ActualVelocity: 0
-  AnguledDirection: 40
+  AnguledDirection: 20
   Turn: 0
-  breakForce: 9999999
+  breakForce: 1000
   PointControl: 0
   Laps: 0
   NewCamera: {fileID: 0}
@@ -385,38 +385,12 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 8878986291818987137}
-  - {fileID: 5099995744435428587}
+  - {fileID: 225056099068026300}
   SimulationBehaviours:
   - {fileID: 3523475683448081655}
   - {fileID: 3163012127106811079}
   - {fileID: 8015777181727255044}
   - {fileID: 1898905914385791278}
---- !u!114 &5099995744435428587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454898107187813369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1710889294, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 2
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 4038848855674623989}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
 --- !u!114 &4571897482220277122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +421,32 @@ MonoBehaviour:
   - {fileID: 7135366996735380555}
   - {fileID: 7968848731403418353}
   - {fileID: 9130154244784596822}
+--- !u!114 &225056099068026300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454898107187813369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1710889294, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 3
+  InterpolationSpace: 1
+  InterpolationTarget: {fileID: 4038848855674623989}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
 --- !u!1 &1797428622398806561
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class VisualName : MonoBehaviour
 {
-    GameObject cam;
+    GameObject cam,Player;
     [SerializeField] float distance;
+    Text text;
     void Start()
     {
         cam = GameObject.Find("FollowText");
+        Player = GameObject.Find("LocalP");
+        text = this.GetComponent<Text>();
     }
 
 
     void Update()
     {
-        if (Vector3.Distance(this.transform.position, cam.transform.position) > distance) this.GetComponent<Text>().enabled = false;
-        else this.GetComponent<Text>().enabled = true;
+        if (Vector3.Distance(this.transform.position, Player.transform.position) > distance) text.enabled = false;
+        else text.enabled = true;
         this.transform.LookAt(cam.transform);
     }
 }

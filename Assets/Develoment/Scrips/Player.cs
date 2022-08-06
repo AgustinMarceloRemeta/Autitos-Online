@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Fusion;
 
 public class Player : NetworkBehaviour
@@ -13,15 +14,15 @@ public class Player : NetworkBehaviour
     [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn, breakForce;
     [SerializeField] int PointControl, Laps;
     [SerializeField] GameObject NewCamera;
+    public NetworkString<_16> NickName { get; set; }
+    [SerializeField] Text NameText;
 
     public float currentBreakForce;
 
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
-    public NetworkString<_32> Name { get; set; }
-   // public string NameLocal;
+    public string NameLocal;
     public PlayerData data;
-    public string OldName;
     public bool End;
 
     private void Awake()
@@ -30,13 +31,20 @@ public class Player : NetworkBehaviour
         manager = FindObjectOfType<GameManager>();
 
     }
-    private void Start()
+    public override void Spawned()
     {
         if (Object.HasInputAuthority)
         {
             this.gameObject.name = "LocalP";
-            //data.RPC_SetName(FindObjectOfType<BasicSpawner>().Name);
+            RpcSetNickName(PlayerPrefs.GetString("PlayerNickName"));
+            print(PlayerPrefs.GetString("PlayerNickName"));
+            NameLocal = NickName.ToString();
+            OnNickNameChanged();
         }
+    }
+    private void Start()
+    {
+      
         ControlCamera.FollowEvent?.Invoke();
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
         manager.Players.Add(this);
@@ -169,6 +177,22 @@ public class Player : NetworkBehaviour
                     break;
             }
         }
+    }
+    #endregion
+
+    #region name 
+    static void onNickNameChanged(Changed<Player> changed)
+    {
+        changed.Behaviour.OnNickNameChanged();
+    }
+    private void OnNickNameChanged()
+    {
+        NameText.text = NickName.ToString();
+    }
+    [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+    public void RpcSetNickName(string NickName, RpcInfo info = default)
+    {
+        this.NickName = NickName;
     }
     #endregion
 }

@@ -26,7 +26,7 @@ public class Player : NetworkBehaviour
     public bool End;
     public static Action RespawnEvent;
     AudioSource source;
-    [Networked] public bool Audio{get; set;}
+    public bool Audio{get; set;}
     [Networked] public float Motor{get; set;}
     [SerializeField] AudioSource MotorSource;
 

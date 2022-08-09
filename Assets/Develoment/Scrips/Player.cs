@@ -62,7 +62,7 @@ public class Player : NetworkBehaviour
     {
         ControlCamera.FollowEvent?.Invoke();
         id = FindObjectOfType<BasicSpawner>().IdPlayer;
-        if(manager.NoGameInit)
+        if(!manager.GameInit)
         Init(id);
         manager.Players.Add(this);
         ColorPlayer();

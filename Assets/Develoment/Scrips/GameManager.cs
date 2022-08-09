@@ -18,7 +18,7 @@ public class GameManager : NetworkBehaviour
     int Order;
     [SerializeField] GameObject ListWin, BoxColor;
     [Networked]
-    public bool NoGameInit { get; set; }
+    public bool GameInit { get; set; }
     #endregion
 
     #region Fuctions

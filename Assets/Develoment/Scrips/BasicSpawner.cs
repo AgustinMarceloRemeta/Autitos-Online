@@ -12,7 +12,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     #region Parameters
     [SerializeField] GameObject Button;
     private NetworkRunner _runner;
-    [SerializeField] GameObject Panel, Winners;
+    [SerializeField] GameObject Panel;
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     Player[] players;
     public int IdPlayer;
@@ -92,7 +92,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
                StartGame(GameMode.AutoHostOrClient,NameServer) ;
             }
             Panel.SetActive(false);
-            Winners.SetActive(true);
         }
     }
     

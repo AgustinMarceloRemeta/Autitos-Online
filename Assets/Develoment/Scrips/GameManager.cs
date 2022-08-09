@@ -16,6 +16,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] Text TextWin;
     string TextWinSt; 
     int Order;
+    [SerializeField] GameObject ListWin;
     #endregion
 
     #region Fuctions
@@ -31,6 +32,7 @@ public class GameManager : NetworkBehaviour
 
     public void WinPlayer()
     {
+        if (!ListWin.activeSelf) ListWin.SetActive(true); 
         for (int item = 0; item < Players.Count; item++)        
         {
             if (Players[item].End)

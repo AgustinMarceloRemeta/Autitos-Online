@@ -650,12 +650,12 @@ GameObject:
   - component: {fileID: 109885964}
   - component: {fileID: 109885963}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button Host
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &109885962
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9146,7 +9146,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Ganadores:'
+  m_Text: 'Posiciones:'
 --- !u!222 &1332994072
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11240,6 +11240,7 @@ MonoBehaviour:
   NewMaterial: {fileID: 2100000, guid: 11f864ace00aecd46a7fe21b1f8e74f1, type: 2}
   LapsForWin: 1
   TextWin: {fileID: 1332994071}
+  ListWin: {fileID: 568316722}
 --- !u!114 &1627575923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11927,7 +11928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -122}
+  m_AnchoredPosition: {x: 0, y: -77}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1711519720
@@ -12046,7 +12047,7 @@ GameObject:
   - component: {fileID: 1712508646}
   - component: {fileID: 1712508645}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button Unirse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12069,7 +12070,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -57.75401}
+  m_AnchoredPosition: {x: 0, y: -12.753994}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1712508645

@@ -5891,6 +5891,90 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1233770503454197652, guid: a37792b2fadd4c9419dd93f9c70bc7a4, type: 3}
   m_PrefabInstance: {fileID: 813482142}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &828720803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 828720806}
+  - component: {fileID: 828720805}
+  - component: {fileID: 828720804}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &828720804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828720803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 0
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 1d3534d4e1b64b0aac139505f0cdfdef
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 828720805}
+  SimulationBehaviours: []
+--- !u!114 &828720805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828720803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dce5096477bca94ba3f0ec24cf56796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  Positions:
+  - {x: -2, y: 1, z: 230}
+  - {x: 2, y: 1, z: 232}
+  - {x: -2, y: 1, z: 234}
+  - {x: 2, y: 1, z: 236}
+  - {x: -2, y: 1, z: 238}
+  - {x: 2, y: 1, z: 240}
+  - {x: 2, y: 1, z: 228}
+  Players: []
+  NewMaterial: {fileID: 2100000, guid: 11f864ace00aecd46a7fe21b1f8e74f1, type: 2}
+  PreMaterial: {fileID: 2100000, guid: 7fd4a05808eae4e46bb14a12020ca045, type: 2}
+  LapsForWin: 1
+  TextWin: {fileID: 1332994071}
+  ListWin: {fileID: 568316722}
+  BoxColor: {fileID: 1627575917}
+--- !u!4 &828720806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828720803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832548832
 GameObject:
   m_ObjectHideFlags: 0
@@ -11129,9 +11213,7 @@ GameObject:
   - component: {fileID: 1627575918}
   - component: {fileID: 1627575921}
   - component: {fileID: 1627575920}
-  - component: {fileID: 1627575922}
   - component: {fileID: 1627575919}
-  - component: {fileID: 1627575923}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -11215,56 +11297,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627575917}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1627575922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627575917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dce5096477bca94ba3f0ec24cf56796, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  Positions:
-  - {x: -2, y: 1, z: 230}
-  - {x: 2, y: 1, z: 232}
-  - {x: -2, y: 1, z: 234}
-  - {x: 2, y: 1, z: 236}
-  - {x: -2, y: 1, z: 238}
-  - {x: 2, y: 1, z: 240}
-  - {x: 2, y: 1, z: 228}
-  Players: []
-  NewMaterial: {fileID: 2100000, guid: 11f864ace00aecd46a7fe21b1f8e74f1, type: 2}
-  LapsForWin: 1
-  TextWin: {fileID: 1332994071}
-  ListWin: {fileID: 568316722}
---- !u!114 &1627575923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627575917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 0
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: 11f5591e495841e2b48ed7d06244b397
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 1627575922}
-  SimulationBehaviours: []
 --- !u!1001 &1630549709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11366,7 +11398,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 1089998429}
   Panel: {fileID: 1040200575}
-  Winners: {fileID: 568316722}
   _playerPrefab:
     RawGuidValue: ffa9e3e07df03eb478e3c3ade6cbe45f
   IdPlayer: 0

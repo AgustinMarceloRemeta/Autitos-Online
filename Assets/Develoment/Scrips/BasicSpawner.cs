@@ -107,4 +107,4 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (Input.GetKey(KeyCode.Escape)) Application.Quit();
     }
     #endregion
-}
+} 

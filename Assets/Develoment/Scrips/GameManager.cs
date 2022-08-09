@@ -11,12 +11,12 @@ public class GameManager : NetworkBehaviour
     #region Parameters
     [SerializeField] Vector3[] Positions;
     public List<Player> Players;
-    [SerializeField] Material NewMaterial;
+    [SerializeField] Material NewMaterial, PreMaterial;
     public int LapsForWin;
     [SerializeField] Text TextWin;
     string TextWinSt; 
     int Order;
-    [SerializeField] GameObject ListWin;
+    [SerializeField] GameObject ListWin, BoxColor;
     #endregion
 
     #region Fuctions
@@ -67,7 +67,19 @@ public class GameManager : NetworkBehaviour
         yield return new WaitForSeconds(3);
         for (int i = 0; i < player.Length; i++)
         player[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        this.GetComponent<MeshRenderer>().material = NewMaterial;
+        BoxColor.GetComponent<MeshRenderer>().material = NewMaterial;
+    }
+
+    public void Respawn()
+    {
+        Player.RespawnEvent?.Invoke();
+        GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = false;
+        BoxColor.GetComponent<MeshRenderer>().material = PreMaterial;
+        BasicSpawner Spawner = FindObjectOfType<BasicSpawner>();
+        if (Spawner.IdPlayer== Spawner.MaxPlayersRoom - 1)
+        Spawner.InitRace();
+        ListWin.SetActive(false);
+        TextWinSt = "Posiciones:";
     }
     #endregion
 }

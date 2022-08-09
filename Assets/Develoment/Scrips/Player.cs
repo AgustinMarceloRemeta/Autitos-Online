@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class Player : NetworkBehaviour
     [SerializeField] Vector3 NewPosition;
     [SerializeField] Material[] material;
     public bool End;
+    public static Action RespawnEvent;
 
     [Header("Name")]
     [SerializeField] Text NameText;
@@ -84,10 +86,15 @@ public class Player : NetworkBehaviour
         if (Laps == manager.LapsForWin)
         {
             End = true;
-            if (Object.HasInputAuthority) GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
-            this.transform.position = NewPosition;
+            LeaveCarrer();
             Laps = 0;
         }
+    }
+
+    private void LeaveCarrer()
+    {
+        if (Object.HasInputAuthority) GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
+        this.transform.position = NewPosition;
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -209,4 +216,18 @@ public class Player : NetworkBehaviour
     }
 
     #endregion
+
+    public void Respawn()
+    {
+        Init(FindObjectOfType<BasicSpawner>().IdPlayer);
+    }
+
+    private void OnEnable()
+    {
+        RespawnEvent += Respawn;
+    }
+    private void OnDisable()
+    {
+        RespawnEvent -= Respawn;
+    }
 }

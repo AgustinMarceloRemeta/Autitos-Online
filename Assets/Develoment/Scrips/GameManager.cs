@@ -8,26 +8,25 @@ using Fusion;
 
 public class GameManager : NetworkBehaviour
 {
+    #region Parameters
     [SerializeField] Vector3[] Positions;
+    public List<Player> Players;
     [SerializeField] Material NewMaterial;
     public int LapsForWin;
     [SerializeField] Text TextWin;
-    string TextWinSt;
-    public List<Player> Players;
+    string TextWinSt; 
     int Order;
-    [SerializeField] Material[] material;
+    #endregion
 
+    #region Fuctions
     void Start()
     {
         TextWinSt = "Ganadores:" + "\n";
-
-
     }
 
     public override void FixedUpdateNetwork()
     {
         TextWin.text = TextWinSt;
-
     }
 
     public void WinPlayer()
@@ -41,11 +40,6 @@ public class GameManager : NetworkBehaviour
                 Players[item].End = false;
             }
         }
-    }
-
-    void Update()
-    {
-     
     }
 
     public void ListText(string Name)
@@ -63,18 +57,15 @@ public class GameManager : NetworkBehaviour
                 player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             }
     }
+
    public IEnumerator Countdown(Player[] player)
     {
         FindObjectOfType<ControlCamera>().Follow = true;
         for (int i = 0; i < player.Length; i++)
-            player[i].gameObject.GetComponent<ChangeColor>().ChangeColors(material[i]);
         yield return new WaitForSeconds(3);
         for (int i = 0; i < player.Length; i++)
         player[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         this.GetComponent<MeshRenderer>().material = NewMaterial;
-     
-     //   Destroy(FindObjectOfType<BasicSpawner>().gameObject);
-     //   SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
- 
+    #endregion
 }

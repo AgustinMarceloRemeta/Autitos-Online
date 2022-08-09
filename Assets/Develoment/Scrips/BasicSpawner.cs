@@ -7,10 +7,9 @@ using Fusion.Sockets;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
+    #region Parameters
     [SerializeField] GameObject Button;
     private NetworkRunner _runner;
     [SerializeField] GameObject Panel, Winners;
@@ -20,6 +19,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public int MaxPlayersRoom;
     [SerializeField] Text ServerName;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+    #endregion
+    #region NetworkFuctions
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     { // Create a unique position for the player
         Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.DefaultPlayers) * 3, 1, 0);
@@ -58,7 +59,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data) { }
     public void OnSceneLoadDone(NetworkRunner runner) { }
     public void OnSceneLoadStart(NetworkRunner runner) { }
-
     public async void StartGame(GameMode mode, string Name)
     {      
         // Create the Fusion runner and let it know that we will be providing user input
@@ -75,20 +75,18 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             PlayerCount = MaxPlayersRoom //maximo de players,
         });
     }
-
-    // Modificar estos botones
+    #endregion
+    #region GameFuctions
     public void Buttons(string Mode)
     {
         string NameServer = ServerName.text;
         if (NameServer == "") NameServer = "No name";
         if (_runner == null)
         {
-            //if (GUI.Button(new Rect(500, 0, 200, 40), "Host"))
             if(Mode == "Host")
             {
                StartGame(GameMode.Host,NameServer);
             }
-            // if (GUI.Button(new Rect(500, 40, 200, 40), "Join"))
             if (Mode == "AutoHostOrClient")
             {
                StartGame(GameMode.AutoHostOrClient,NameServer) ;
@@ -98,18 +96,16 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
     
-  public void InitRace()
-    {
-        
+    public void InitRace()
+    {      
         players = FindObjectsOfType<Player>();
         FindObjectOfType<Player>().RPC_InitGame(players);
-        Button.SetActive(false);
-        
+        Button.SetActive(false);        
     }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Escape)) Application.Quit();
     }
+    #endregion
 }
-

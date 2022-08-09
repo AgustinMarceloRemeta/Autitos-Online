@@ -7,12 +7,7 @@ using UnityEngine.UI;
 public class NameData : MonoBehaviour
 {
     [SerializeField] Text NameText;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+ 
     public void InitGame()
     {
         PlayerPrefs.SetString("PlayerNickName", NameText.text);

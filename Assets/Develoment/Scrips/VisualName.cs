@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class VisualName : MonoBehaviour
 {
-    GameObject cam,Player;
+    GameObject cam, Player;
     [SerializeField] float distance;
     Text text;
+
     void Start()
     {
         cam = GameObject.Find("FollowText");
         Player = GameObject.Find("LocalP");
         text = this.GetComponent<Text>();
     }
-
 
     void Update()
     {

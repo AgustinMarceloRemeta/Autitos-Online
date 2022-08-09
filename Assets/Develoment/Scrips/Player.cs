@@ -7,30 +7,37 @@ using Fusion;
 
 public class Player : NetworkBehaviour
 {
-    [Header("Movement")]
+    #region Parameters
+        [Header("Movement")]
     Rigidbody Rb;
     [SerializeField] WheelCollider WheelBl, WheelBr, WheelFr, WheelFl;
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
     [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn, breakForce;
-    [SerializeField] int PointControl, Laps;
-    [SerializeField] GameObject NewCamera;
-    [Networked(OnChanged = nameof (OnNickNameChanged))]
-
-    public NetworkString<_16> NickName { get; set; }
-    [SerializeField] Text NameText;
-
     public float currentBreakForce;
 
+    [Header("Gameplay")]
+    [SerializeField] GameObject NewCamera;
+    [SerializeField] int PointControl, Laps;
     GameManager manager;
     [SerializeField] Vector3 NewPosition;
+    [SerializeField] Material[] material;
     public bool End;
 
+    [Header("Name")]
+    [SerializeField] Text NameText;
+    [Networked(OnChanged = nameof (OnNickNameChanged))]
+    public NetworkString<_16> NickName { get; set; }
+    [Networked] public int NumberPlayer { get; set; }
+    #endregion
+
+    #region Gameplay
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();
         manager = FindObjectOfType<GameManager>();
 
     }
+
     public override void Spawned()
     {
         if (Object.HasInputAuthority)
@@ -38,13 +45,33 @@ public class Player : NetworkBehaviour
             this.gameObject.name = "LocalP";
             RpcSetNickName(PlayerPrefs.GetString("PlayerNickName"));
         }
+
     }
+
+    public override void FixedUpdateNetwork()
+    {
+        Movement();
+        VisualWhels();
+        if (End) manager.WinPlayer();
+    }
+
     private void Start()
     {
-      
         ControlCamera.FollowEvent?.Invoke();
         Init(FindObjectOfType<BasicSpawner>().IdPlayer);
         manager.Players.Add(this);
+        ColorPlayer();
+    }
+
+    public void Update()
+    {
+        Win();
+    }
+
+    private void ColorPlayer()
+    {
+        if (Object.HasInputAuthority) NumberPlayer = FindObjectOfType<BasicSpawner>().IdPlayer;
+        this.GetComponent<ChangeColor>().ChangeColors(material[NumberPlayer]);
     }
 
     void Init(int player)
@@ -56,10 +83,8 @@ public class Player : NetworkBehaviour
     {
         if (Laps == manager.LapsForWin)
         {
-            //  manager.ListText(Name.ToString());
             End = true;
             if (Object.HasInputAuthority) GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
-            // Runner.Despawn(GetComponent<NetworkObject>());
             this.transform.position = NewPosition;
             Laps = 0;
         }
@@ -71,31 +96,17 @@ public class Player : NetworkBehaviour
         StartCoroutine(FindObjectOfType<GameManager>().Countdown(players));
     }
 
+    #endregion
 
-    public void Update()
-    {
-        //   if(Laps == manager.Laps) 
-        Win();
-       
-
-    }
-    public override void FixedUpdateNetwork()
-    {
-        Movement();
-        VisualWhels();
-        if (End) manager.WinPlayer();
-        //    if (Object.HasInputAuthority) Name = OldName; 
-        //NameLocal = Name.ToString();
-    }
-    
+    #region Movement
     private void ApplyBreaking()
- {
-    WheelFr.brakeTorque = currentBreakForce*3 * Runner.DeltaTime;
-    WheelBr.brakeTorque = currentBreakForce*3 * Runner.DeltaTime;
-    WheelBl.brakeTorque = currentBreakForce*3 * Runner.DeltaTime;
-    WheelFl.brakeTorque = currentBreakForce*3 * Runner.DeltaTime;
- }
-    #region Gameplay
+    {
+        WheelFr.brakeTorque = currentBreakForce * 3 * Runner.DeltaTime;
+        WheelBr.brakeTorque = currentBreakForce * 3 * Runner.DeltaTime;
+        WheelBl.brakeTorque = currentBreakForce * 3 * Runner.DeltaTime;
+        WheelFl.brakeTorque = currentBreakForce * 3 * Runner.DeltaTime;
+    }
+
     private void Movement()
     {
         if (GetInput(out NetworkInputData data))
@@ -148,6 +159,7 @@ public class Player : NetworkBehaviour
         TrWheelFl.localEulerAngles = new Vector3(TrWheelFl.localEulerAngles.x, Turn*2, 0);
         TrWheelFr.localEulerAngles = new Vector3(TrWheelFr.localEulerAngles.x, Turn*2, 0);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         ControlPoint controlPoint = other.gameObject.GetComponent<ControlPoint>();
@@ -177,20 +189,24 @@ public class Player : NetworkBehaviour
         }
     }
     #endregion
-
+     
     #region name 
     static void  OnNickNameChanged(Changed<Player> changed)
     {
         changed.Behaviour.OnNickNameChanged();
     }
+
     private void OnNickNameChanged()
     {
         NameText.text = NickName.ToString();
     }
+
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+
     public void RpcSetNickName(string NickName, RpcInfo info = default)
     {
         this.NickName = NickName;
     }
+
     #endregion
 }

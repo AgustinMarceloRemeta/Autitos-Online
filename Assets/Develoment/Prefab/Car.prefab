@@ -351,15 +351,28 @@ MonoBehaviour:
   breakForce: 1000
   PointControl: 0
   Laps: 0
+  IdPlayer: 0
   NewCamera: {fileID: 0}
   _NickName:
     _length: 0
     _data:
       Data: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  _NumberPlayer: 0
   NameText: {fileID: 3442227105545713554}
   currentBreakForce: 0
   NewPosition: {x: -44, y: 1, z: 709}
   End: 0
+  material:
+  - {fileID: 2100000, guid: d1f92189de1755e42937a9091cd224bf, type: 2}
+  - {fileID: 2100000, guid: 22dee0e4ed25e8240b4028eda3dbf569, type: 2}
+  - {fileID: 2100000, guid: 49706b7fbea1e9c4db548a73859579dd, type: 2}
+  - {fileID: 2100000, guid: e242fe77fa85d554db7ae446cd50a22e, type: 2}
+  - {fileID: 2100000, guid: 2cfddbef9aaca2e45818a4dcc0196a0e, type: 2}
+  - {fileID: 2100000, guid: 9f398512fb7f1ac41b9ec48c702634e0, type: 2}
+  - {fileID: 2100000, guid: 9b7c8f18f8ab8ef4a99da86f5eb2ee32, type: 2}
+  - {fileID: 2100000, guid: ce3ba9065319e0e42bff30e1034eef6e, type: 2}
+  - {fileID: 2100000, guid: a798114638a8a404baf9df1cbb75b23c, type: 2}
+  - {fileID: 2100000, guid: bd216c766f58b4e40afee926dd794a2a, type: 2}
 --- !u!114 &5457375800738436399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1824,7 +1837,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Sin Nombre =(
 --- !u!114 &4383328034990871703
 MonoBehaviour:
   m_ObjectHideFlags: 0

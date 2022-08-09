@@ -5925,8 +5925,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.5371017, y: -11.589199}
-  m_SizeDelta: {x: 147.9385, y: 95.4324}
+  m_AnchoredPosition: {x: 2.0986, y: -11.5}
+  m_SizeDelta: {x: 166.394, y: 95.4324}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &832548834
 MonoBehaviour:
@@ -6619,10 +6619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b4a35859fbf564aaaa92072a14983c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance: {x: 0, y: -1.8, z: 7}
-  InitY: 20
-  CameraY: 4
-  SpeedAnim: 5
   Follow: 0
 --- !u!114 &976343160
 MonoBehaviour:
@@ -11240,21 +11236,10 @@ MonoBehaviour:
   - {x: -2, y: 1, z: 238}
   - {x: 2, y: 1, z: 240}
   - {x: 2, y: 1, z: 228}
+  Players: []
   NewMaterial: {fileID: 2100000, guid: 11f864ace00aecd46a7fe21b1f8e74f1, type: 2}
   LapsForWin: 1
   TextWin: {fileID: 1332994071}
-  Players: []
-  material:
-  - {fileID: 2100000, guid: ce3ba9065319e0e42bff30e1034eef6e, type: 2}
-  - {fileID: 2100000, guid: 22dee0e4ed25e8240b4028eda3dbf569, type: 2}
-  - {fileID: 2100000, guid: bd216c766f58b4e40afee926dd794a2a, type: 2}
-  - {fileID: 2100000, guid: 49706b7fbea1e9c4db548a73859579dd, type: 2}
-  - {fileID: 2100000, guid: e242fe77fa85d554db7ae446cd50a22e, type: 2}
-  - {fileID: 2100000, guid: 2cfddbef9aaca2e45818a4dcc0196a0e, type: 2}
-  - {fileID: 2100000, guid: d1f92189de1755e42937a9091cd224bf, type: 2}
-  - {fileID: 2100000, guid: a798114638a8a404baf9df1cbb75b23c, type: 2}
-  - {fileID: 2100000, guid: 9b7c8f18f8ab8ef4a99da86f5eb2ee32, type: 2}
-  - {fileID: 2100000, guid: 9f398512fb7f1ac41b9ec48c702634e0, type: 2}
 --- !u!114 &1627575923
 MonoBehaviour:
   m_ObjectHideFlags: 0

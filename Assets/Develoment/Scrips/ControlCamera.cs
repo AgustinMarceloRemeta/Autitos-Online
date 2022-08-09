@@ -5,16 +5,9 @@ using System;
 
 public class ControlCamera : MonoBehaviour
 {
-    [SerializeField] Vector3 Distance;
     GameObject Player;
     public static Action FollowEvent;
-    [SerializeField]float InitY,CameraY ,SpeedAnim;
     public bool Follow;
-    void Start()
-    {
-        
-    }
-
 
     void Update()
     {
@@ -23,8 +16,6 @@ public class ControlCamera : MonoBehaviour
             this.GetComponent<FollowCamera>().target = Player.transform;
             Follow = false;
         }
-
-
     }
 
     void AsignPlayer()
@@ -36,6 +27,7 @@ public class ControlCamera : MonoBehaviour
     {
         FollowEvent += AsignPlayer;
     }
+
     private void OnDisable()
     {
         FollowEvent -= AsignPlayer;

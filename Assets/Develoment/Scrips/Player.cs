@@ -14,7 +14,8 @@ public class Player : NetworkBehaviour
     Rigidbody Rb;
     [SerializeField] WheelCollider WheelBl, WheelBr, WheelFr, WheelFl;
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
-    [SerializeField] float Force, Velocity, VelocityMax, ActualVelocity, AnguledDirection, Turn, breakForce;
+    [SerializeField] float Force, VelocityMax, ActualVelocity, AnguledDirection, Turn, breakForce;
+    [Networked] public float Velocity { get; set; }
     public float currentBreakForce;
 
     [Header("Gameplay")]
@@ -29,7 +30,6 @@ public class Player : NetworkBehaviour
     [Networked] public bool Audio{get; set;}
      public float Motor{get; set;}
     [SerializeField] AudioSource MotorSource;
-    int MaxId;
 
     [Header("Name")]
     [SerializeField] Text NameText;
@@ -45,7 +45,6 @@ public class Player : NetworkBehaviour
         Rb = GetComponent<Rigidbody>();
         manager = FindObjectOfType<GameManager>();
         source = this.GetComponent<AudioSource>();
-        MaxId = FindObjectOfType<BasicSpawner>().MaxPlayersRoom - 1;
     }
 
     public override void Spawned()
@@ -83,7 +82,6 @@ public class Player : NetworkBehaviour
 
     public void Update()
     {
-        if(id == MaxId)
         Motor = Velocity / VelocityMax;
         Win();
         if(Audio)

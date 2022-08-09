@@ -67,7 +67,7 @@ public class Player : NetworkBehaviour
         if (!manager.GameInit)
             Init(id);
         else {
-            GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
+            if (Object.HasInputAuthority) GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
             LeaveCarrer();
         } 
 

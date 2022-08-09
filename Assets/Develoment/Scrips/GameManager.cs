@@ -77,7 +77,7 @@ public class GameManager : NetworkBehaviour
         GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = false;
         BoxColor.GetComponent<MeshRenderer>().material = PreMaterial;
         BasicSpawner Spawner = FindObjectOfType<BasicSpawner>();
-        if (Spawner.IdPlayer== Spawner.MaxPlayersRoom - 1)
+       // if (Spawner.IdPlayer== Spawner.MaxPlayersRoom - 1)
         Spawner.InitRace();
         ListWin.SetActive(false);
         TextWinSt = "Posiciones:";

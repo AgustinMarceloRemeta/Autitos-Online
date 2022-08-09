@@ -30,6 +30,7 @@ public class Player : NetworkBehaviour
     [Networked(OnChanged = nameof (OnNickNameChanged))]
     public NetworkString<_16> NickName { get; set; }
     [Networked] public int NumberPlayer { get; set; }
+    int id;
     #endregion
 
     #region Gameplay
@@ -60,7 +61,8 @@ public class Player : NetworkBehaviour
     private void Start()
     {
         ControlCamera.FollowEvent?.Invoke();
-        Init(FindObjectOfType<BasicSpawner>().IdPlayer);
+        id = FindObjectOfType<BasicSpawner>().IdPlayer;
+        Init(id);
         manager.Players.Add(this);
         ColorPlayer();
     }
@@ -219,7 +221,7 @@ public class Player : NetworkBehaviour
 
     public void Respawn()
     {
-        if(Object.InputAuthority) Init(FindObjectOfType<BasicSpawner>().IdPlayer);
+        Init(id);
     }
 
     private void OnEnable()

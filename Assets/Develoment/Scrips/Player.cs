@@ -82,7 +82,7 @@ public class Player : NetworkBehaviour
 
     public void Update()
     {
-        Motor = Velocity / VelocityMax;
+        Motor = ActualVelocity / 50;
         Win();
         if(Audio)
         {

@@ -344,12 +344,12 @@ MonoBehaviour:
   TrWheelFr: {fileID: 1797428624008820878}
   TrWheelFl: {fileID: 1797428623776171475}
   Force: 1000
-  Velocity: 0
   VelocityMax: 150
   ActualVelocity: 0
   AnguledDirection: 20
   Turn: 0
   breakForce: 1000
+  _Velocity: 0
   currentBreakForce: 0
   NewCamera: {fileID: 0}
   PointControl: 0
@@ -368,7 +368,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bd216c766f58b4e40afee926dd794a2a, type: 2}
   End: 0
   _Audio: 0
-  _Motor: 0
   MotorSource: {fileID: 7176297512924261959}
   NameText: {fileID: 3442227105545713554}
   _NickName:

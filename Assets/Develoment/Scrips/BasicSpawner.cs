@@ -49,7 +49,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         data.Force = Input.GetAxis("Vertical");
         data.turn = Input.GetAxis("Horizontal");
         if (Input.GetKey(KeyCode.Space)) data.Break = true;
-        if (Input.GetKey("g")) data.Horn = true;
+        if (Input.GetKey("f")) data.Horn = true;
         input.Set(data);
     }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }

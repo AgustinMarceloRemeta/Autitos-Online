@@ -5261,7 +5261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &730528886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6174,6 +6174,7 @@ MonoBehaviour:
   TextWin: {fileID: 1332994071}
   ListWin: {fileID: 568316722}
   BoxColor: {fileID: 1627575917}
+  _GameInit: 0
 --- !u!4 &828720806
 Transform:
   m_ObjectHideFlags: 0
@@ -11610,6 +11611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 1089998429}
+  Button2: {fileID: 730528885}
   Panel: {fileID: 1040200575}
   _playerPrefab:
     RawGuidValue: ffa9e3e07df03eb478e3c3ade6cbe45f

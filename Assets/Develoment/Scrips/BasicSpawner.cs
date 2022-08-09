@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     #region Parameters
-    [SerializeField] GameObject Button;
+    [SerializeField] GameObject Button, Button2;
     private NetworkRunner _runner;
     [SerializeField] GameObject Panel;
     [SerializeField] private NetworkPrefabRef _playerPrefab;
@@ -29,7 +29,12 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         // Keep track of the player avatars so we can remove it when they disconnect
         _spawnedCharacters.Add(player, networkPlayerObject);
         IdPlayer = player.PlayerId;
-        if(IdPlayer == MaxPlayersRoom-1) Button.SetActive(true);
+        if (IdPlayer == MaxPlayersRoom - 1)
+        {
+            Button.SetActive(true);
+            Button2.SetActive(true);
+
+        }
     }
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {  // Find and remove the players avatar

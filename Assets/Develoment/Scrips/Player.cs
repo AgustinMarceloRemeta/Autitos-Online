@@ -26,8 +26,8 @@ public class Player : NetworkBehaviour
     public bool End;
     public static Action RespawnEvent;
     AudioSource source;
-    public bool Audio{get; set;}
-    [Networked] public float Motor{get; set;}
+    [Networked] public bool Audio{get; set;}
+     public float Motor{get; set;}
     [SerializeField] AudioSource MotorSource;
 
     [Header("Name")]
@@ -61,7 +61,7 @@ public class Player : NetworkBehaviour
         Movement();
         VisualWhels();
         if (End) manager.WinPlayer();
-        MotorSource.volume = (Rb.velocity.magnitude * 15) / VelocityMax; 
+
     }
 
     private void Start()
@@ -81,14 +81,14 @@ public class Player : NetworkBehaviour
 
     public void Update()
     {
-        Motor = (Rb.velocity.magnitude * 15) / VelocityMax;
+        Motor = Velocity / VelocityMax;
         Win();
         if(Audio)
         {
             if (!source.isPlaying) source.Play();
         }
             else source.Stop();
-       
+         MotorSource.volume = Motor;
     }
     private void ColorPlayer()
     {

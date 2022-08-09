@@ -72,7 +72,8 @@ public class GameManager : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RpcRespawn()
     {
-        if(Object.InputAuthority) Player.RespawnEvent?.Invoke();
+        
+        Player.RespawnEvent?.Invoke();
         GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = false;
         BoxColor.GetComponent<MeshRenderer>().material = PreMaterial;
         BasicSpawner Spawner = FindObjectOfType<BasicSpawner>();

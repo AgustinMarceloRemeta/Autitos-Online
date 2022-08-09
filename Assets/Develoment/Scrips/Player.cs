@@ -219,7 +219,7 @@ public class Player : NetworkBehaviour
 
     public void Respawn()
     {
-        Init(FindObjectOfType<BasicSpawner>().IdPlayer);
+        if(Object.InputAuthority) Init(FindObjectOfType<BasicSpawner>().IdPlayer);
     }
 
     private void OnEnable()
@@ -230,4 +230,5 @@ public class Player : NetworkBehaviour
     {
         RespawnEvent -= Respawn;
     }
+
 }

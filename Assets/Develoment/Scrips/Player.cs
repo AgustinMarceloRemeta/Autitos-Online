@@ -88,7 +88,7 @@ public class Player : NetworkBehaviour
             if (!source.isPlaying) source.Play();
         }
             else source.Stop();
-         MotorSource.volume = Motor;
+         MotorSource.volume = (Rb.velocity.magnitude * 15) / VelocityMax; ;
     }
     private void ColorPlayer()
     {

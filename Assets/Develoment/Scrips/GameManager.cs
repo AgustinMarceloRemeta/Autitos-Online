@@ -69,8 +69,8 @@ public class GameManager : NetworkBehaviour
         player[i].gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         BoxColor.GetComponent<MeshRenderer>().material = NewMaterial;
     }
-
-    public void Respawn()
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RpcRespawn()
     {
         Player.RespawnEvent?.Invoke();
         GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = false;

@@ -99,7 +99,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {      
         players = FindObjectsOfType<Player>();
         FindObjectOfType<Player>().RPC_InitGame(players);
-        Button.SetActive(false);        
+        Button.SetActive(false);
+        FindObjectOfType<GameManager>().NoGameInit = false;
     }
 
     private void Update()

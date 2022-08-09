@@ -17,6 +17,8 @@ public class GameManager : NetworkBehaviour
     string TextWinSt; 
     int Order;
     [SerializeField] GameObject ListWin, BoxColor;
+    [Networked]
+    public bool NoGameInit { get; set; }
     #endregion
 
     #region Fuctions
@@ -71,13 +73,11 @@ public class GameManager : NetworkBehaviour
     }
     [Rpc(RpcSources.All, RpcTargets.All)]
     public void RpcRespawn()
-    {
-        
+    {      
         Player.RespawnEvent?.Invoke();
         GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = false;
         BoxColor.GetComponent<MeshRenderer>().material = PreMaterial;
         BasicSpawner Spawner = FindObjectOfType<BasicSpawner>();
-       // if (Spawner.IdPlayer== Spawner.MaxPlayersRoom - 1)
         Spawner.InitRace();
         ListWin.SetActive(false);
         TextWinSt = "Posiciones:";

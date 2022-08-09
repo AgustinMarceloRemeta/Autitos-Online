@@ -27,6 +27,8 @@ public class Player : NetworkBehaviour
     public static Action RespawnEvent;
     AudioSource source;
     [Networked] public bool Audio{get; set;}
+    [Networked] public float Motor{get; set;}
+    [SerializeField] AudioSource MotorSource;
 
     [Header("Name")]
     [SerializeField] Text NameText;
@@ -85,6 +87,7 @@ public class Player : NetworkBehaviour
             if (!source.isPlaying) source.Play();
         }
             else source.Stop();
+        MotorSource.volume = Motor;
     }
     private void ColorPlayer()
     {
@@ -168,7 +171,7 @@ public class Player : NetworkBehaviour
             WheelFl.steerAngle = Turn;
             WheelFr.steerAngle = Turn;
 
-
+            Motor = Velocity/VelocityMax;
         }
     }
 

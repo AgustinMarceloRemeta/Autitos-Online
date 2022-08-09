@@ -6,4 +6,5 @@ public struct NetworkInputData : INetworkInput
     public float Force;
     public float turn;
     public bool Break;
+    public bool Horn;
 }

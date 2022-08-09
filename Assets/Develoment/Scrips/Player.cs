@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using Fusion;
 
@@ -24,6 +25,7 @@ public class Player : NetworkBehaviour
     [SerializeField] Material[] material;
     public bool End;
     public static Action RespawnEvent;
+    AudioSource source;
 
     [Header("Name")]
     [SerializeField] Text NameText;
@@ -38,7 +40,7 @@ public class Player : NetworkBehaviour
     {
         Rb = GetComponent<Rigidbody>();
         manager = FindObjectOfType<GameManager>();
-
+        source = this.GetComponent<AudioSource>(); 
     }
 
     public override void Spawned()
@@ -56,6 +58,7 @@ public class Player : NetworkBehaviour
         Movement();
         VisualWhels();
         if (End) manager.WinPlayer();
+
     }
 
     private void Start()
@@ -77,7 +80,10 @@ public class Player : NetworkBehaviour
     {
         Win();
     }
-
+    public void Horn()
+    {
+        
+    }
     private void ColorPlayer()
     {
         if (Object.HasInputAuthority) NumberPlayer = FindObjectOfType<BasicSpawner>().IdPlayer;
@@ -126,6 +132,12 @@ public class Player : NetworkBehaviour
     {
         if (GetInput(out NetworkInputData data))
         {
+            if (data.Horn)
+            {
+                if (!source.isPlaying)
+                    source.Play();
+            }
+            else source.Stop();
 
             /*
             data.direction.Normalize();

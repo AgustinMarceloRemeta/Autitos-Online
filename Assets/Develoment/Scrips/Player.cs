@@ -10,7 +10,7 @@ using Fusion;
 public class Player : NetworkBehaviour
 {
     #region Parameters
-        [Header("Movement")]
+    [Header("Movement")]
     Rigidbody Rb;
     [SerializeField] WheelCollider WheelBl, WheelBr, WheelFr, WheelFl;
     [SerializeField] Transform TrWheelBl, TrWheelBr, TrWheelFr, TrWheelFl;
@@ -26,6 +26,7 @@ public class Player : NetworkBehaviour
     public bool End;
     public static Action RespawnEvent;
     AudioSource source;
+    [Networked] public bool Audio{get; set;}
 
     [Header("Name")]
     [SerializeField] Text NameText;
@@ -79,10 +80,11 @@ public class Player : NetworkBehaviour
     public void Update()
     {
         Win();
-    }
-    public void Horn()
-    {
-        
+        if(Audio)
+        {
+            if (!source.isPlaying) source.Play();
+        }
+            else source.Stop();
     }
     private void ColorPlayer()
     {
@@ -132,12 +134,9 @@ public class Player : NetworkBehaviour
     {
         if (GetInput(out NetworkInputData data))
         {
-            if (data.Horn)
-            {
-                if (!source.isPlaying)
-                    source.Play();
-            }
-            else source.Stop();
+            if (data.Horn) Audio = true;
+            else Audio = false;
+          
 
             /*
             data.direction.Normalize();

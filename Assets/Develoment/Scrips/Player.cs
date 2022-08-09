@@ -81,6 +81,7 @@ public class Player : NetworkBehaviour
 
     public void Update()
     {
+        Motor = Velocity / VelocityMax;
         Win();
         if(Audio)
         {
@@ -171,7 +172,7 @@ public class Player : NetworkBehaviour
             WheelFl.steerAngle = Turn;
             WheelFr.steerAngle = Turn;
 
-            if (Object.HasInputAuthority) Motor = Velocity/VelocityMax;
+            
         }
     }
 

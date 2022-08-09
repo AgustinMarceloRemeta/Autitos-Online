@@ -348,7 +348,7 @@ MonoBehaviour:
   ActualVelocity: 0
   AnguledDirection: 20
   Turn: 0
-  breakForce: 1000
+  breakForce: 500
   _Velocity: 0
   currentBreakForce: 0
   NewCamera: {fileID: 0}

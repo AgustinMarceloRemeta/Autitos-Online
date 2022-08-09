@@ -87,7 +87,7 @@ public class Player : NetworkBehaviour
             if (!source.isPlaying) source.Play();
         }
             else source.Stop();
-        MotorSource.volume = Motor;
+         MotorSource.volume = Motor;
     }
     private void ColorPlayer()
     {
@@ -171,7 +171,7 @@ public class Player : NetworkBehaviour
             WheelFl.steerAngle = Turn;
             WheelFr.steerAngle = Turn;
 
-            Motor = Velocity/VelocityMax;
+            if (Object.HasInputAuthority) Motor = Velocity/VelocityMax;
         }
     }
 

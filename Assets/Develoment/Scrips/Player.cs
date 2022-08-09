@@ -66,7 +66,10 @@ public class Player : NetworkBehaviour
         ColorPlayer();
         if (!manager.GameInit)
             Init(id);
-        else LeaveCarrer() ;
+        else {
+            GameObject.FindGameObjectWithTag("NewCamera").GetComponent<Camera>().enabled = true;
+            LeaveCarrer();
+        } 
 
     }
 
